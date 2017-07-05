@@ -1,0 +1,20 @@
+[
+  {
+    "name" : "SangamDirect Online Grocery Store",
+    "dates" : "November 2014 – April 2015",
+    "details" : [
+      "Contributed in development of a multi-state ecommerce platform using CodeIgniter, AngularJS and Bootstrap",
+      "Developed RESTful web services for Android and iOS mobile applications",
+      "Setup and configured HTTP servers, FTP servers and domain names for private clouds"
+    ]
+  },
+  {
+    "name" : "Kohli Brothers",
+    "dates" : "June 2014 – September 2014",
+    "details" : [
+      "Designed an e-commerce store for Kohli Brothers, a garment seller based in Kashmir, India",
+      "Developed using Magento and AngularJS"
+    ]
+  }
+
+]

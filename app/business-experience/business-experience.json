@@ -1,0 +1,26 @@
+[
+  {
+    "name" : "Sanvik Computer Consultants, Mumbai, India",
+    "dates" : "August 2013 to April 2015",
+    "position" : "Software Engineer",
+    "details" : [
+      "Full stack web developer in a team with 5 members",
+      "Developed web solutions using PHP (MVC), AJAX, AngularJS, JavaScript, jQuery, and responsive designs",
+      "Contributed in SQL database design and implemented NoSQL to deliver 80% quicker data requests",
+      "Created scripts to generate company dashboards and email PDF copies to desired stakeholders",
+      "Integrated payment gateways, introduced predictive buying functionality and incorporated SEO",
+      "Adopted methodologies like DevOps, Agile, SCRUM and Extreme Programming for efficient project execution",
+      "Optimized legacy code to increase application performance by 22%"
+    ]
+  },
+  {
+    "name" : "Eltrosoftwares, Mumbai, India",
+    "dates" : "January 2014 – February 2015",
+    "position" : "Freelance Web Developer",
+    "details" : [
+      "Utilized core PHP, Twitter Bootstrap and Google Material Design to build robust user experiences",
+      "Converted PSD, AI and raw images into responsive web themes for retail websites, blogs and discussion boards"
+    ]
+  }
+
+]

@@ -1,6 +1,6 @@
 angular.
 module('ResumeApp').
 config(function config($locationProvider) {
-            $locationProvider.hashPrefix('!');
-        }
-    );
+        $locationProvider.hashPrefix('!');
+    }
+);

@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    resizeSidebar();
-});
-
 $(window).on('resize', function(){
       resizeSidebar();
 });

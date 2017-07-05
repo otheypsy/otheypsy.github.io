@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ResumeApp">
 <head>
     <meta charset="UTF-8">
     <title>Omkar Desai | Curriculum Vitae</title>
@@ -12,34 +12,7 @@
     <div class="row main-container">
         <div class="col s12 l3 xl2 sidebar brown z-depth-2">
             <div class="sidebar-wrapper">
-                <div class="row">
-                    <div class="col s4 l8 offset-s4 offset-l2">
-                        <div class="profile-img">
-                            <object class="responsive-svg circle z-depth-2 white" data="img/profile.svg" type="image/svg+xml">
-                                <img class="responsive-img circle z-depth-2 white" src="img/profile.png">
-                            </object>
-                        </div>
-                    </div>
-                </div>
-                <h5 class="flow-text white-text center-align">Omkar Desai</h5>
-                <ul class="details">
-                    <li>
-                        <h6 class="white-text mdi mdi-phone">&nbsp;&nbsp;Phone</h6>
-                        <label class="detail-value">+1 (469) 951-6232</label>
-                    </li>
-                    <li>
-                        <h6 class="white-text mdi mdi-email">&nbsp;&nbsp;Email</h6>
-                        <a href="mailto:omkar.desai@utdallas.edu" class="detail-value lighten-1">omkar.desai@utdallas.edu</a>
-                    </li>
-                    <li>
-                        <h6 class="white-text mdi mdi-home">&nbsp;&nbsp;Address</h6>
-                        <span class="detail-value">
-                            378 Firwood Place<br>
-                            Plano, TX - 75075<br>
-                            United States
-                        </span>
-                    </li>
-                </ul>
+                <personal-details></personal-details>
                 <div class="row">
                     <div class="col s3 center-align">
                         <a target="_blank" title="LinkedIn" class="mdi mdi-linkedin mdi-36px white-text" href="https://www.linkedin.com/in/omkardesai1991"></a>
@@ -57,172 +30,28 @@
             </div>
         </div>
         <div class="col s12 l9 xl10">
-            <div class="detail-block">
-                <h4 class="header mdi mdi-school">&nbsp;Education</h4>
-                <div class="row detail">
-                    <div class="col s1">
-                        <object class="responsive-svg" data="img/utdallas.svg" type="image/svg+xml">
-                            <img class="responsive-img" src="img/utdallas.png">
-                        </object>
-                    </div>
-                    <div class="col s11">
-                        <h5 class="brown-text detail-header">The University of Texas at Dallas</h5>
-                        <small>August 2015 to May 2017</small>
-                        <p>Master of Science in <b>Information Technology and Management</b>, IT Consulting and Project Management</p>
-                    </div>
-                </div>
-                <div class="row detail">
-                    <div class="col s1">
-                        <object class="responsive-svg" data="img/goa_uni.svg" type="image/svg+xml">
-                            <img class="responsive-img" src="img/goa_uni.png">
-                        </object>
-                    </div>
-                    <div class="col s11">
-                        <h5 class="brown-text detail-header">Goa University</h5>
-                        <small>July 2009 to June 2013</small>
-                        <p>Bachelor of Engineering in <b>Information Technology</b></p>
-                    </div>
-                </div>
-            </div>
-            <div class="detail-block">
-                <h4 class="header mdi mdi-desktop-mac">&nbsp;Technical Skills</h4>
-                <div class="row detail">
-                    <div class="col s2">
-                        <h6 class="brown-text">Concepts</h6>
-                    </div>
-                    <div class="col s10">
-                        <blockquote>
-                            <div class="chip">Object-oriented concepts</div>
-                            <div class="chip">Data Structures</div>
-                            <div class="chip">Algorithms</div>
-                            <div class="chip">Software design patterns</div>
-                            <div class="chip">Cloud computing</div>
-                        </blockquote>
-                    </div>
-                    <div class="col s2">
-                        <h6 class="brown-text">Methodologies</h6>
-                    </div>
-                    <div class="col s10">
-                        <blockquote>
-                            <div class="chip">Agile</div>
-                            <div class="chip">SCRUM</div>
-                            <div class="chip">ITIL</div>
-                            <div class="chip">TOGAF</div>
-                            <div class="chip">DevOps</div>
-                            <div class="chip">Lean IT</div>
-                        </blockquote>
-                    </div>
-                    <div class="col s2">
-                        <h6 class="brown-text">Programming</h6>
-                    </div>
-                    <div class="col s10">
-                        <blockquote>
-                            <div class="chip">Python</div>
-                            <div class="chip">PHP</div>
-                            <div class="chip">HTML</div>
-                            <div class="chip">CSS</div>
-                            <div class="chip">JavaScript</div>
-                            <div class="chip">jQuery</div>
-                        </blockquote>
-                    </div>
-                    <div class="col s2">
-                        <h6 class="brown-text">Frameworks</h6>
-                    </div>
-                    <div class="col s10">
-                        <blockquote>
-                            <div class="chip">CodeIgniter</div>
-                            <div class="chip">Magento</div>
-                            <div class="chip">AngularJS</div>
-                            <div class="chip">Django</div>
-                            <div class="chip">Twitter Bootstrap</div>
-                            <div class="chip">MateralizeCSS</div>
-                            <div class="chip">PyQt5</div>
-                        </blockquote>
-                    </div>
-                    <div class="col s2">
-                        <h6 class="brown-text">Databases</h6>
-                    </div>
-                    <div class="col s10">
-                        <blockquote>
-                            <div class="chip">SQL</div>
-                            <div class="chip">NoSQL</div>
-                            <div class="chip">Oracle</div>
-                            <div class="chip">MySQL</div>
-                            <div class="chip">PostgreSQL</div>
-                            <div class="chip">SQLite</div>
-                            <div class="chip">Apache Solr</div>
-                        </blockquote>
-                    </div>
-                    <div class="col s2">
-                        <h6 class="brown-text">Software and OS</h6>
-                    </div>
-                    <div class="col s10">
-                        <blockquote>
-                            <div class="chip">WAMP</div>
-                            <div class="chip">LAMP</div>
-                            <div class="chip">Git</div>
-                            <div class="chip">Filezilla</div>
-                            <div class="chip">MS Office</div>
-                            <div class="chip">Photoshop</div>
-                            <div class="chip">PyCharm</div>
-                            <div class="chip">PHPStorm</div>
-                            <div class="chip">Linux</div>
-                            <div class="chip">Windows</div>
-                            <div class="chip">Mac</div>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-            <div class="detail-block">
-                <h4 class="header mdi mdi-briefcase">&nbsp;Business Experience</h4>
-                <div class="row detail">
-                    <div class="col s12">
-                        <h5 class="brown-text detail-header">Sanvik Computer Consultants, Mumbai, India</h5>
-                        <small>August 2013 to April 2015</small>
-                        <p><b>Software Engineer</b></p>
-                        <blockquote>Full stack web developer in a team with 5 members</blockquote>
-                        <blockquote>Developed web solutions using PHP (MVC), AJAX, AngularJS, JavaScript, jQuery, and responsive designs</blockquote>
-                        <blockquote>Contributed in SQL database design and implemented NoSQL to deliver 80% quicker data requests</blockquote>
-                        <blockquote>Created scripts to generate company dashboards and email PDF copies to desired stakeholders</blockquote>
-                        <blockquote>Integrated payment gateways, introduced predictive buying functionality and incorporated SEO</blockquote>
-                        <blockquote>Adopted methodologies like DevOps, Agile, SCRUM and Extreme Programming for efficient project execution</blockquote>
-                        <blockquote>Optimized legacy code to increase application performance by 22%</blockquote>
-                    </div>
-                </div>
-                <div class="row detail">
-                    <div class="col s12">
-                        <h5 class="brown-text detail-header">Eltrosoftwares, Mumbai, India</h5>
-                        <small>January 2014 – February 2015</small>
-                        <p><b>Freelance Web Developer</b></p>
-                        <blockquote>Utilized core PHP, Twitter Bootstrap and Google Material Design to build robust user experiences</blockquote>
-                        <blockquote>Converted PSD, AI and raw images into responsive web themes for retail websites, blogs and discussion boards</blockquote>
-                    </div>
-                </div>
-            </div>
-            <div class="detail-block">
-                <h4 class="header mdi mdi-projector-screen">&nbsp;Projects</h4>
-                <div class="row detail">
-                    <div class="col s12">
-                        <h5 class="brown-text detail-header">SangamDirect Online Grocery Store</h5>
-                        <small>November 2014 – April 2015</small>
-                        <blockquote>Contributed in development of a multi-state ecommerce platform using CodeIgniter, AngularJS and Bootstrap</blockquote>
-                        <blockquote>Developed RESTful web services for Android and iOS mobile applications</blockquote>
-                        <blockquote>Setup and configured HTTP servers, FTP servers and domain names for private clouds</blockquote>
-                    </div>
-                </div>
-                <div class="row detail">
-                    <div class="col s12">
-                        <h5 class="brown-text detail-header">Kohli Brothers</h5>
-                        <small>June 2014 – September 2014</small>
-                        <blockquote>Designed an e-commerce store for Kohli Brothers, a garment seller based in Kashmir, India</blockquote>
-                        <blockquote>Developed using Magento and AngularJS</blockquote>
-                    </div>
-                </div>
-            </div>
+            <education></education>
+            <technical-skills></technical-skills>
+            <business-experience></business-experience>
+            <projects></projects>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="app/app.module.js"></script>
+<script type="text/javascript" src="app/app.config.js"></script>
+<script type="text/javascript" src="app/personal-details/personal-details.component.js"></script>
+<script type="text/javascript" src="app/personal-details/personal-details.service.js"></script>
+<script type="text/javascript" src="app/education/education.component.js"></script>
+<script type="text/javascript" src="app/education/education.service.js"></script>
+<script type="text/javascript" src="app/technical-skills/technical-skills.component.js"></script>
+<script type="text/javascript" src="app/technical-skills/technical-skills.service.js"></script>
+<script type="text/javascript" src="app/business-experience/business-experience.component.js"></script>
+<script type="text/javascript" src="app/business-experience/business-experience.service.js"></script>
+<script type="text/javascript" src="app/projects/projects.component.js"></script>
+<script type="text/javascript" src="app/projects/projects.service.js"></script>
 </html>

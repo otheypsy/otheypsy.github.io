@@ -1,0 +1,13 @@
+<div class="detail-block">
+    <h4 class="header mdi mdi-school">&nbsp;Education</h4>
+    <div class="row detail" ng-repeat="item in $ctrl.details">
+        <div class="col s1">
+            <img class="responsive-img" ng-src="{{ item.pngURL }}">
+        </div>
+        <div class="col s11">
+            <h5 class="brown-text detail-header">{{ item.name }}</h5>
+            <small>{{ item.dates }}</small>
+            <p>{{ item.detail_1 }} in <b>{{ item.detail_2 }}</b></p>
+        </div>
+    </div>
+</div>

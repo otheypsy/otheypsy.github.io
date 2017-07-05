@@ -1,12 +1,13 @@
 angular.
 module('ResumeApp').
-component('personalDetails', {
-    templateUrl: 'app/personal-details/personal-details.template.html',
-    controller: function PersonalDetailsController($timeout, personalDetailsService) {
+component('businessExperience', {
+    templateUrl: 'app/business-experience/business-experience.template.html',
+    controller: function BusinessExperienceController($timeout, businessExperienceService) {
         var self = this;
-        personalDetailsService.getDetails()
+        businessExperienceService.getDetails()
             .then(function (response) {
                 self.details = response.data;
+                resizeSidebar();
             }, function (error) {
                 console.log('Error loading data...')
             });

@@ -1,10 +1,10 @@
 angular.
 module('ResumeApp').
-component('personalDetails', {
-    templateUrl: 'app/personal-details/personal-details.template.html',
-    controller: function PersonalDetailsController($timeout, personalDetailsService) {
+component('projects', {
+    templateUrl: 'app/projects/projects.template.html',
+    controller: function ProjectsController($timeout, projectsService) {
         var self = this;
-        personalDetailsService.getDetails()
+        projectsService.getDetails()
             .then(function (response) {
                 self.details = response.data;
             }, function (error) {

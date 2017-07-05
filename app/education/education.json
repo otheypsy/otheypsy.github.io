@@ -1,0 +1,17 @@
+[
+  {
+    "pngURL" : "img/utdallas.png",
+    "name" : "The University of Texas at Dallas",
+    "dates" : "August 2015 to May 2017",
+    "detail_1" : "Master of Science",
+    "detail_2" : "Information Technology and Management"
+  },
+  {
+    "pngURL" : "img/goa_uni.png",
+    "name" : "Goa University",
+    "dates" : "July 2009 to June 2013",
+    "detail_1" : "Bachelor of Engineering",
+    "detail_2" : "Information Technology"
+  }
+
+]
