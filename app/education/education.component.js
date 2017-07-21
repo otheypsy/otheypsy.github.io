@@ -2,19 +2,17 @@ angular.
 module('ResumeApp').
 component('education', {
     templateUrl: 'app/education/education.template.html',
-    controller: function EducationController($timeout, educationService) {
-        var self = this;
-        educationService.getDetails()
-            .then(function (response) {
-                self.details = response.data;
-            }, function (error) {
-                console.log('Error loading data...')
-            });
+    controller: function EducationController($scope, educationService, resizeSidebarService) {
 
-        self.$postLink= function() {
-            $timeout(function () {
-                resizeSidebar();
-            }, 100);
+        var self = this;
+
+        self.$onInit = function () {
+            self.details = {};
+            educationService.getDetails().then(function (snapshot) {
+                self.details = snapshot.val();
+                $scope.$digest();
+                resizeSidebarService.runService();
+            });
         };
     }
 });

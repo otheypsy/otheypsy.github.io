@@ -1,8 +1,12 @@
 angular.
 module('ResumeApp').
-service('educationService', function ($http) {
+service('educationService', function () {
+
     this.getDetails = function () {
-        return $http.get('app/education/education.json');
-    }
+        return firebase.database().ref('/education').once('value');
+    };
+
 });
+
+
 

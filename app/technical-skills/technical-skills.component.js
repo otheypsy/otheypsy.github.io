@@ -2,19 +2,17 @@ angular.
 module('ResumeApp').
 component('technicalSkills', {
     templateUrl: 'app/technical-skills/technical-skills.template.html',
-    controller: function TechnicalSkillsController($timeout, technicalSkillsService) {
-        var self = this;
-        technicalSkillsService.getDetails()
-            .then(function (response) {
-                self.details = response.data;
-            }, function (error) {
-                console.log('Error loading data...')
-            });
+    controller: function TechnicalSkillsController($scope, technicalSkillsService, resizeSidebarService) {
 
-        self.$postLink= function() {
-            $timeout(function () {
-                resizeSidebar();
-            }, 100);
+        var self = this;
+
+        self.$onInit = function () {
+            self.details = {};
+            technicalSkillsService.getDetails().then(function (snapshot) {
+                self.details = snapshot.val();
+                $scope.$digest();
+                resizeSidebarService.runService();
+            });
         };
     }
 });

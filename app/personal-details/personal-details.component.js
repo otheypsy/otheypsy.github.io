@@ -2,19 +2,17 @@ angular.
 module('ResumeApp').
 component('personalDetails', {
     templateUrl: 'app/personal-details/personal-details.template.html',
-    controller: function PersonalDetailsController($timeout, personalDetailsService) {
-        var self = this;
-        personalDetailsService.getDetails()
-            .then(function (response) {
-                self.details = response.data;
-            }, function (error) {
-                console.log('Error loading data...')
-            });
+    controller: function PersonalDetailsController($scope, personalDetailsService, resizeSidebarService) {
 
-        self.$postLink= function() {
-            $timeout(function () {
-                resizeSidebar();
-            }, 100);
+        var self = this;
+
+        self.$onInit = function () {
+            self.details = {};
+            personalDetailsService.getDetails().then(function (snapshot) {
+                self.details = snapshot.val();
+                $scope.$digest();
+                resizeSidebarService.runService();
+            });
         };
     }
 });

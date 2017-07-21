@@ -1,8 +1,10 @@
 angular.
 module('ResumeApp').
-service('technicalSkillsService', function ($http) {
+service('technicalSkillsService', function () {
+
     this.getDetails = function () {
-        return $http.get('app/technical-skills/technical-skills.json');
-    }
+        return firebase.database().ref('/technical-skills').once('value');
+    };
+
 });
 
