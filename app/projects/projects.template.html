@@ -2,9 +2,9 @@
     <h4 class="header mdi mdi-projector-screen">&nbsp;Projects</h4>
     <div class="row detail" ng-repeat="item in $ctrl.details">
         <div class="col s12">
-            <h5 class="brown-text detail-header">{{ item.name }}</h5>
-            <small>{{ item.dates }}</small>
-            <blockquote ng-repeat="data in item.details">{{ data }}</blockquote>
+            <h5 class="brown-text detail-header">{{ item.title }}</h5>
+            <small ng-bind="( item.start_date + ' - ' + item.end_date )"></small>
+            <blockquote ng-repeat="data in item.description" ng-bind="data"></blockquote>
         </div>
     </div>
 </div>

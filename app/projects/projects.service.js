@@ -4,7 +4,7 @@ service('projectsService', function () {
 
     return {
         getDetails: function () {
-            return firebase.database().ref('/projects').once('value');
+            return firebase.database().ref('/projects').orderByChild('end_date').once('value');
         }
     }
 

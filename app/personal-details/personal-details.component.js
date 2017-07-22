@@ -2,7 +2,7 @@ angular.
 module('ResumeApp').
 component('personalDetails', {
     templateUrl: 'app/personal-details/personal-details.template.html',
-    controller: function PersonalDetailsController($scope, personalDetailsService, resizeSidebarService) {
+    controller: function PersonalDetailsController($scope, personalDetailsService, globalService) {
 
         var self = this;
 
@@ -11,7 +11,7 @@ component('personalDetails', {
             personalDetailsService.getDetails().then(function (snapshot) {
                 self.details = snapshot.val();
                 $scope.$digest();
-                resizeSidebarService.runService();
+                globalService.resizeSidebar();
             });
         };
     }

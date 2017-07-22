@@ -1,8 +1,8 @@
 angular.
 module('ResumeApp').
-service('resizeSidebarService', function ($timeout) {
+service('globalService', function ($timeout) {
 
-    this.runService = function () {
+    this.resizeSidebar = function () {
         $timeout(function(){
             resizeSidebar();
         },0,false)

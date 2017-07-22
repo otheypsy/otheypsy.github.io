@@ -2,7 +2,7 @@ angular.
 module('ResumeApp').
 component('education', {
     templateUrl: 'app/education/education.template.html',
-    controller: function EducationController($scope, educationService, resizeSidebarService) {
+    controller: function EducationController($scope, educationService, globalService) {
 
         var self = this;
 
@@ -11,7 +11,7 @@ component('education', {
             educationService.getDetails().then(function (snapshot) {
                 self.details = snapshot.val();
                 $scope.$digest();
-                resizeSidebarService.runService();
+                globalService.resizeSidebar();
             });
         };
     }

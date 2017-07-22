@@ -2,7 +2,7 @@ angular.
 module('ResumeApp').
 component('businessExperience', {
     templateUrl: 'app/business-experience/business-experience.template.html',
-    controller: function BusinessExperienceController($scope, businessExperienceService, resizeSidebarService) {
+    controller: function BusinessExperienceController($scope, businessExperienceService, globalService) {
 
         var self = this;
 
@@ -11,7 +11,7 @@ component('businessExperience', {
             businessExperienceService.getDetails().then(function (snapshot) {
                 self.details = snapshot.val();
                 $scope.$digest();
-                resizeSidebarService.runService();
+                globalService.resizeSidebar();
             });
         };
     }
