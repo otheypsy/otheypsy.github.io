@@ -3,11 +3,11 @@
     <div class="row detail">
         <div ng-repeat="item in $ctrl.details">
             <div class="col s2">
-                <h6 class="brown-text">{{ item.name }}</h6>
+                <h6 class="brown-text" ng-bind="item.name"></h6>
             </div>
             <div class="col s10">
                 <blockquote>
-                    <div class="chip" ng-repeat="skill in item.skills">{{ skill }}</div>
+                    <div class="chip" ng-repeat="skill in item.skills" ng-bind="skill"></div>
                 </blockquote>
             </div>
         </div>

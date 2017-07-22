@@ -7,9 +7,9 @@ component('projects', {
         var self = this;
 
         self.$onInit = function () {
-            self.details = {};
+            self.details = [];
             projectsService.getDetails().then(function (snapshot) {
-                self.details = snapshot.val();
+                self.details = globalService.acceptFirebaseData(snapshot);
                 $scope.$digest();
                 globalService.resizeSidebar();
             });

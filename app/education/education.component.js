@@ -9,7 +9,7 @@ component('education', {
         self.$onInit = function () {
             self.details = {};
             educationService.getDetails().then(function (snapshot) {
-                self.details = snapshot.val();
+                self.details = globalService.acceptFirebaseData(snapshot);
                 $scope.$digest();
                 globalService.resizeSidebar();
             });

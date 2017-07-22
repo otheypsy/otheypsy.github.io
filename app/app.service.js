@@ -8,4 +8,12 @@ service('globalService', function ($timeout) {
         },0,false)
     };
 
+    this.acceptFirebaseData = function (snapshot) {
+        var returnData = {};
+        snapshot.val().forEach(function(value, key) {
+            returnData[key] = value;
+        });
+        return returnData;
+    }
+
 });

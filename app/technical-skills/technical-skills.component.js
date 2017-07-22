@@ -9,7 +9,7 @@ component('technicalSkills', {
         self.$onInit = function () {
             self.details = {};
             technicalSkillsService.getDetails().then(function (snapshot) {
-                self.details = snapshot.val();
+                self.details = globalService.acceptFirebaseData(snapshot);
                 $scope.$digest();
                 globalService.resizeSidebar();
             });

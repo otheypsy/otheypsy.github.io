@@ -27,6 +27,7 @@ html {
 }
 
 .sidebar .details .detail-value {
+    display: inline-block;
     font-size: 1em;
     color: #D3B2A7;
 }

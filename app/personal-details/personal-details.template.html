@@ -5,18 +5,18 @@
         </div>
     </div>
 </div>
-<h5 class="flow-text white-text center-align">{{ $ctrl.details.name }}</h5>
+<h5 class="flow-text white-text center-align" ng-bind="$ctrl.details.name"></h5>
 <ul class="details">
     <li>
         <h6 class="white-text mdi mdi-phone">&nbsp;&nbsp;Phone</h6>
-        <label class="detail-value">{{ $ctrl.details.phone }}</label>
+        <label class="detail-value" ng-bind="$ctrl.details.phone"></label>
     </li>
     <li>
         <h6 class="white-text mdi mdi-email">&nbsp;&nbsp;Email</h6>
-        <a href="mailto:{{ $ctrl.email }}" class="detail-value lighten-1">{{ $ctrl.details.email }}</a>
+        <a href="mailto:{{ $ctrl.email }}" class="detail-value lighten-1" ng-bind="$ctrl.details.email"></a>
     </li>
     <li>
         <h6 class="white-text mdi mdi-home">&nbsp;&nbsp;Address</h6>
-        <span class="detail-value" ng-repeat="addressLine in $ctrl.details.address">{{ addressLine }}<br></span>
+        <label class="detail-value" ng-repeat="addressLine in $ctrl.details.address" ng-bind="addressLine"></label>
     </li>
 </ul>
