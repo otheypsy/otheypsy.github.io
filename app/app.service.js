@@ -10,8 +10,10 @@ service('globalService', function ($timeout) {
 
     this.acceptFirebaseData = function (snapshot) {
         var returnData = {};
-        snapshot.val().forEach(function(value, key) {
-            returnData[key] = value;
+        var key = 0;
+        snapshot.forEach(function(child) {
+            returnData[key] = child.val();
+            key++;
         });
         return returnData;
     }

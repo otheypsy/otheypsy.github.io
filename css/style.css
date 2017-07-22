@@ -41,7 +41,7 @@ html {
     border-bottom: 1px dashed #D3B2A7;
 }
 
-.detail-block:last-child {
+.detail-block.last {
     border-bottom: none;
 }
 
