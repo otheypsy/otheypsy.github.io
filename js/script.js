@@ -1,5 +1,5 @@
 $(window).on('resize', function(){
-      resizeSidebar();
+    resizeSidebar();
 });
 
 function resizeSidebar() {

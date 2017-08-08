@@ -1,6 +1,6 @@
 <div class="detail-block last">
     <h4 class="header mdi mdi-projector-screen">&nbsp;Projects</h4>
-    <div class="row detail" ng-repeat="item in $ctrl.details">
+    <div class="row detail" ng-repeat="item in $ctrl.details | orderBy:$ctrl.sort_parameter">
         <div class="col s12">
             <h5 class="brown-text detail-header">
                 <span ng-bind="item.title"></span>
@@ -10,7 +10,16 @@
             <small><b ng-bind="item.occupation"></b></small>
             <br>
             <small ng-bind="( item.start_date + ' - ' + item.end_date )"></small>
-            <blockquote ng-repeat="data in item.description" ng-bind="data"></blockquote>
+            <br>
+            <div class="description" ng-hide="!item.toggle">
+                <blockquote ng-repeat="data in item.description">
+                    <span ng-bind="data"></span>
+                </blockquote>
+            </div>
+            <div ng-click="$ctrl.toggleDetails(item)" class="chip toggle">
+                <span ng-hide="item.toggle">Details</span>
+                <span ng-hide="!item.toggle">Hide</span>
+            </div>
         </div>
     </div>
 </div>

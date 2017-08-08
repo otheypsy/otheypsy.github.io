@@ -17,7 +17,10 @@
     </li>
     <li>
         <h6 class="white-text mdi mdi-home">&nbsp;&nbsp;Address</h6>
-        <label class="detail-value" ng-repeat="addressLine in $ctrl.details.address" ng-bind="addressLine"></label>
+        <label class="detail-value" ng-repeat="addressLine in $ctrl.details.address">
+            <span ng-bind="addressLine"></span>
+            <br>
+        </label>
     </li>
 </ul>
 <div class="row">
