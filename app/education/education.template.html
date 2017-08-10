@@ -2,10 +2,10 @@
     <h4 class="header mdi mdi-school">&nbsp;Education</h4>
     <div class="row detail" ng-repeat="item in $ctrl.details">
         <div class="col s12 m2 l1">
-            <img class="uni_emblem responsive-img" ng-src="{{ item.pngURL }}">
+            <img class="responsive-img" ng-src="{{ item.pngURL }}">
         </div>
         <div class="col s12 m10 l11">
-            <h5 class="brown-text detail-header" ng-bind="item.name"></h5>
+            <h5 class="brown-text detail-header flow-text" ng-bind="item.name"></h5>
             <small ng-bind="item.dates"></small>
             <p>
                 <span ng-bind="item.detail_1"></span>

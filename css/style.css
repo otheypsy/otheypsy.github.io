@@ -28,7 +28,7 @@ html {
 
 .sidebar .details .detail-value {
     display: block;
-    font-size: 1em;
+    font-size: 0.9rem;
     color: #D3B2A7;
 }
 
@@ -39,10 +39,6 @@ html {
 .detail-block {
     padding: 10px;
     border-bottom: 1px dashed #D3B2A7;
-}
-
-.detail-block .uni_emblem {
-    max-height: 100px;
 }
 
 .detail-block.last {
