@@ -1,5 +1,5 @@
 angular.
-module('ResumeApp').
+module('ResumeApp', []).
 config(function config($locationProvider) {
         $locationProvider.hashPrefix('!');
         var dbConfig = {

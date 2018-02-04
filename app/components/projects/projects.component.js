@@ -1,8 +1,8 @@
 angular.
 module('ResumeApp').
 component('projects', {
-    templateUrl: 'app/projects/projects.template.html',
-    controller: function ProjectsController($scope, projectsService, globalService) {
+    templateUrl: 'app/components/projects/projects.template.html',
+    controller: function ($scope, projectsService, globalService) {
 
         var self = this;
 
@@ -13,7 +13,6 @@ component('projects', {
                 self.details = globalService.acceptFirebaseData(snapshot);
                 self.details = globalService.dateConverter(self.details, ['start_date']);
                 $scope.$digest();
-                globalService.resizeSidebar();
             });
         };
 

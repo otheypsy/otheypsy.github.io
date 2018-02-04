@@ -2,12 +2,6 @@ angular.
 module('ResumeApp').
 service('globalService', function ($timeout) {
 
-    this.resizeSidebar = function () {
-        $timeout(function(){
-            resizeSidebar();
-        },0,false)
-    };
-
     this.acceptFirebaseData = function (snapshot) {
         var returnData = [];
         var key = 0;
@@ -17,7 +11,7 @@ service('globalService', function ($timeout) {
         });
         return returnData;
     };
-    
+
     this.dateConverter = function (details, date_identifiers) {
         var identifier = [];
         var count = date_identifiers.length;

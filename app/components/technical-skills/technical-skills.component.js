@@ -1,8 +1,8 @@
 angular.
 module('ResumeApp').
 component('technicalSkills', {
-    templateUrl: 'app/technical-skills/technical-skills.template.html',
-    controller: function TechnicalSkillsController($scope, technicalSkillsService, globalService) {
+    templateUrl: 'app/components/technical-skills/technical-skills.template.html',
+    controller: function ($scope, technicalSkillsService, globalService) {
 
         var self = this;
 
@@ -11,7 +11,6 @@ component('technicalSkills', {
             technicalSkillsService.getDetails().then(function (snapshot) {
                 self.details = globalService.acceptFirebaseData(snapshot);
                 $scope.$digest();
-                globalService.resizeSidebar();
             });
         };
     }

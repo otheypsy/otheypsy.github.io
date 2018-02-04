@@ -1,0 +1,28 @@
+<div class="personal-details">
+    <div class="detail">
+        <img class="responsive-img profile-img circle" ng-src="{{ $ctrl.details.pngURL }}">
+        <h5 class="flow-text center-align" ng-bind="$ctrl.details.name"></h5>
+    </div>
+    <hr>
+    <div class="detail">
+        <h6 class="mdi mdi-phone">&nbsp;&nbsp;Phone</h6>
+        <label class="detail-value" ng-bind="$ctrl.details.phone"></label>
+    </div>
+    <div class="detail">
+        <h6 class="mdi mdi-email">&nbsp;&nbsp;Email</h6>
+        <a href="mailto:{{ $ctrl.email }}" class="detail-value lighten-1" ng-bind="$ctrl.details.email"></a>
+    </div>
+    <hr>
+    <div class="detail" ng-repeat="(location, address) in $ctrl.details.address">
+        <h6 class="mdi mdi-home">&nbsp;&nbsp;<span ng-bind="location"></span> Address</h6>
+        <label class="detail-value" ng-repeat="line in address" ng-bind="line"></label>
+    </div>
+    <hr>
+    <div class="detail">
+        <div class="row">
+            <div class="col s3 l6 xl3 center-align" ng-repeat="(key, item) in $ctrl.details.media">
+                <a target="_blank" title="{{ key }}" ng-class="item.icon_class" class="mdi mdi-36px detail-media" ng-href="{{ item.url }}"></a>
+            </div>
+        </div>
+    </div>
+</div>

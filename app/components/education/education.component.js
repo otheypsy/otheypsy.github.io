@@ -1,8 +1,8 @@
 angular.
 module('ResumeApp').
 component('education', {
-    templateUrl: 'app/education/education.template.html',
-    controller: function EducationController($scope, educationService, globalService) {
+    templateUrl: 'app/components/education/education.template.html',
+    controller: function ($scope, educationService, globalService) {
 
         var self = this;
 
@@ -11,7 +11,6 @@ component('education', {
             educationService.getDetails().then(function (snapshot) {
                 self.details = globalService.acceptFirebaseData(snapshot);
                 $scope.$digest();
-                globalService.resizeSidebar();
             });
         };
     }

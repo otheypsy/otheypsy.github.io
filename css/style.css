@@ -1,39 +1,84 @@
+:root {
+    --varden: #FFF8DC;
+    --brown: #834C24;
+    --light-brown: #E9B28A;
+    --blue: #003366;
+    --black: #1F1209;
+}
+
 html {
     height:100%;
     font-family: 'Varela Round', sans-serif;
+    background-color: var(--varden);
+    color: var(--black);
 }
 
-.main-container {
-    margin-bottom: 0;
+object, embed{
+    width:100%;
+    min-height:100%;
 }
 
-.responsive-svg {
+.responsive-svg, .responsive-img {
+    display: block;
     width: 100%;
+    margin: 0 auto;
 }
 
-.profile-img {
-    padding-top: 20px;
+.personal-details .profile-img{
+    max-width: 250px;
+    padding: 20px;
 }
 
-.sidebar .details {
-    margin-top: 30px;
+.personal-details hr {
+    border: none;
+    border-top: 1px dashed var(--light-brown);
+    margin: 0 2rem 1.5rem 2rem;
+}
+
+.personal-details .detail {
+    margin: 20px 20px;
     word-wrap: break-word;
-}
-
-.sidebar .details li {
-    padding: 5px 10px;
-    margin: 5px auto;
     text-align: center;
 }
 
-.sidebar .details .detail-value {
+.personal-details .detail h6 {
+    text-transform: capitalize;
+}
+
+.personal-details .detail .detail-value {
     display: block;
     font-size: 0.9rem;
-    color: #D3B2A7;
+    color: var(--blue);
+}
+
+.personal-details .detail .detail-media {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--brown);
 }
 
 .main-content {
-    padding: 10px 20px;
+    border-left: 1px dashed var(--light-brown);
+}
+
+.main-content .tabs {
+    background: transparent;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+.main-content .tabs .tab a {
+    color: var(--brown);
+    font-size: 1.2rem;
+}
+
+.main-content .tabs .tab .active {
+    font-weight: 500;
+}
+
+.main-content .tabs .indicator {
+    background-color: var(--brown);
 }
 
 .detail-block {
@@ -72,4 +117,8 @@ html {
 
 .detail-block .detail .description.hide {
     display: none;
+}
+
+.main-content .resume {
+    margin: 2rem;
 }

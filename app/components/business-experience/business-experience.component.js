@@ -1,8 +1,8 @@
 angular.
 module('ResumeApp').
 component('businessExperience', {
-    templateUrl: 'app/business-experience/business-experience.template.html',
-    controller: function BusinessExperienceController($scope, businessExperienceService, globalService) {
+    templateUrl: 'app/components/business-experience/business-experience.template.html',
+    controller: function ($scope, businessExperienceService, globalService) {
 
         var self = this;
 
@@ -11,7 +11,6 @@ component('businessExperience', {
             businessExperienceService.getDetails().then(function (snapshot) {
                 self.details = globalService.acceptFirebaseData(snapshot, self);
                 $scope.$digest();
-                globalService.resizeSidebar();
             });
         };
     }
