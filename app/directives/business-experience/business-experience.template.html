@@ -1,9 +1,9 @@
 <div class="detail-block">
-    <h4 class="header mdi mdi-briefcase">&nbsp;Business Experience</h4>
-    <div class="row detail" ng-repeat="item in $ctrl.details">
+    <h4 class="header mdi mdi-briefcase"> Business Experience</h4>
+    <div class="row detail" ng-repeat="item in details">
         <div class="col s12">
             <h5 class="brown-text detail-header" ng-bind="item.name"></h5>
-            <small ng-bind="item.dates"></small>
+            <small ng-bind="item.start_date"></small><small ng-bind="item.end_date"></small>
             <p><b ng-bind="item.position"></b></p>
             <blockquote ng-repeat="data in item.details" ng-bind="data"></blockquote>
         </div>

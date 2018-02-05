@@ -1,7 +1,7 @@
 angular.
 module('ResumeApp').
 component('technicalSkills', {
-    templateUrl: 'app/components/technical-skills/technical-skills.template.html',
+    templateUrl: 'app/directives/technical-skills/technical-skills.template.html',
     controller: function ($scope, technicalSkillsService, globalService) {
 
         var self = this;

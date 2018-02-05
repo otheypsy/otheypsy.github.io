@@ -13,9 +13,9 @@ html {
     color: var(--black);
 }
 
-object, embed{
-    width:100%;
-    min-height:100%;
+.video-container {
+    height: auto;
+    min-height: 105%;
 }
 
 .responsive-svg, .responsive-img {

@@ -1,6 +1,6 @@
 angular.
 module('ResumeApp').
-service('globalService', function ($timeout) {
+service('globalService', function () {
 
     this.acceptFirebaseData = function (snapshot) {
         var returnData = [];
