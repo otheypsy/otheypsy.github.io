@@ -1,0 +1,17 @@
+<div>
+    <div class="detail-block" ng-repeat="project in $ctrl.projects">
+        <div class="detail">
+            <detail-header header="project.name"></detail-header>
+            <detail-sub-header sub-header="project.description"></detail-sub-header>
+            <br />
+            <button class="btn btn-flat" ng-click="$ctrl.getProjectReadme(project.name)">View Readme</button>
+            <a ng-href="{{ project.svn_url }}" class="btn btn-flat" target="_blank">GitHub Link</a>
+        </div>
+    </div>
+    <div id="projectModal" class="modal">
+        <div class="modal-content" ng-bind-html="$ctrl.projectReadme"></div>
+        <div class="modal-footer">
+            <button class="modal-action modal-close btn btn-flat">Close</button>
+        </div>
+    </div>
+</div>

@@ -1,24 +1,13 @@
 <div class="detail-block last">
-    <h4 class="header mdi mdi-projector-screen"> Projects</h4>
-    <div class="row detail" ng-repeat="item in details | orderBy:sortParameter">
-        <div class="col s12">
-            <h5 class="brown-text detail-header">
-                <span ng-bind="item.title"></span>
-                <a target="_blank" title="Link to project" class="mdi mdi-open-in-new brown-text" ng-if="(item.url != null)" ng-href="{{ item.url }}"></a>
-            </h5>
-            <small><b ng-bind="item.occupation"></b></small>
-            <br />
-            <small ng-bind="( item.start_date + ' - ' + item.end_date )"></small>
-            <br />
-            <div class="description" ng-hide="!item.toggle">
-                <blockquote ng-repeat="data in item.description">
-                    <span ng-bind="data"></span>
-                </blockquote>
-            </div>
-            <div ng-click="toggleDetails(item)" class="chip toggle">
-                <span ng-hide="item.toggle">Details</span>
-                <span ng-hide="!item.toggle">Hide</span>
-            </div>
+    <detail-block-header icon="'mdi-projector-screen'" header="'Projects'"></detail-block-header>
+    <div class="col s12 detail project" ng-repeat="item in details | orderBy:sortParameter">
+        <detail-header header="item.title"></detail-header>
+        <detail-sub-header sub-header="item.occupation"></detail-sub-header>
+        <detail-dates start-date="item.start_date" end-date="item.end_date"></detail-dates>
+        <detail-list list="item.description" ng-hide="!item.toggle"></detail-list>
+        <div ng-click="toggleDetails(item)" class="toggle">
+            <span class="mdi mdi-chevron-down mdi-36px" ng-hide="item.toggle"></span>
+            <span class="mdi mdi-chevron-up mdi-36px" ng-hide="!item.toggle"></span>
         </div>
     </div>
 </div>

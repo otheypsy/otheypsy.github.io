@@ -5,16 +5,16 @@
     </div>
     <hr />
     <div class="detail">
-        <h6 class="mdi mdi-phone">  Phone</h6>
+        <h6 class="mdi mdi-phone header">  Phone</h6>
         <label class="detail-value" ng-bind="details.phone"></label>
     </div>
     <div class="detail">
-        <h6 class="mdi mdi-email">  Email</h6>
+        <h6 class="mdi mdi-email header">  Email</h6>
         <a href="mailto:{{ email }}" class="detail-value lighten-1" ng-bind="details.email"></a>
     </div>
     <hr />
     <div class="detail" ng-repeat="(location, address) in details.address">
-        <h6 class="mdi mdi-home">  <span ng-bind="location"></span> Address</h6>
+        <h6 class="mdi mdi-home header">  <span ng-bind="location"></span> Address</h6>
         <label class="detail-value" ng-repeat="line in address" ng-bind="line"></label>
     </div>
     <hr />

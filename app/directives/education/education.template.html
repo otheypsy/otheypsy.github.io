@@ -1,17 +1,13 @@
 <div class="detail-block">
-    <h4 class="header mdi mdi-school">Education</h4>
+    <detail-block-header icon="'mdi-school'" header="'Education'"></detail-block-header>
     <div class="row detail" ng-repeat="item in details">
         <div class="col s12 m2 l1">
             <img class="responsive-img" ng-src="{{ item.pngURL }}" />
         </div>
         <div class="col s12 m10 l11">
-            <h5 class="brown-text detail-header flow-text" ng-bind="item.name"></h5>
-            <small ng-bind="item.dates"></small>
-            <p>
-                <span ng-bind="item.detail_1"></span>
-                in
-                <b ng-bind="item.detail_2"></b>
-            </p>
+            <detail-header header="item.name"></detail-header>
+            <detail-sub-header sub-header="item.detail_1 + ' in ' + item.detail_2"></detail-sub-header>
+            <detail-dates start-date="item.start_date" end-date="item.end_date"></detail-dates>
         </div>
     </div>
 </div>

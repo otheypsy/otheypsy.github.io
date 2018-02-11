@@ -1,11 +1,11 @@
 <div class="detail-block">
-    <h4 class="header mdi mdi-briefcase"> Business Experience</h4>
+    <detail-block-header icon="'mdi-briefcase'" header="'Business Experience'"></detail-block-header>
     <div class="row detail" ng-repeat="item in details">
         <div class="col s12">
-            <h5 class="brown-text detail-header" ng-bind="item.name"></h5>
-            <small ng-bind="item.start_date"></small><small ng-bind="item.end_date"></small>
-            <p><b ng-bind="item.position"></b></p>
-            <blockquote ng-repeat="data in item.details" ng-bind="data"></blockquote>
+            <detail-header header="item.name"></detail-header>
+            <detail-dates start-date="item.start_date" end-date="item.end_date"></detail-dates>
+            <detail-sub-header sub-header="item.position"></detail-sub-header>
+            <detail-list list="item.details"></detail-list>
         </div>
     </div>
 </div>

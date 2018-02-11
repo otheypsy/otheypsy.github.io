@@ -1,13 +1,4 @@
 <div class="detail-block">
-    <h4 class="header mdi mdi-desktop-mac"> Technical Skills</h4>
-    <div class="row detail" ng-repeat="item in $ctrl.details">
-        <div class="col s12 xl2">
-            <h6 class="brown-text" ng-bind="item.name"></h6>
-        </div>
-        <div class="col s12 xl10">
-            <blockquote>
-                <div class="chip" ng-repeat="skill in item.skills" ng-bind="skill"></div>
-            </blockquote>
-        </div>
-    </div>
+    <detail-block-header icon="'mdi-desktop-mac'" header="'Technical Skills'"></detail-block-header>
+    <skill-table skills="details"></skill-table>
 </div>
