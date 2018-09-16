@@ -1,0 +1,26 @@
+<div class="detail-block last">
+    <detail-block-header-directive
+        icon="'mdi-projector-screen'"
+        header="'Projects'">
+    </detail-block-header-directive>
+    <div class="row detail" data-ng-repeat="item in details | orderBy:sortParameter">
+        <detail-header-directive
+            header="item.title">
+        </detail-header-directive>
+        <detail-sub-header-directive
+            sub-header="item.occupation">
+        </detail-sub-header-directive>
+        <detail-dates-directive
+            start-date="item.start_date"
+            end-date="item.end_date">
+        </detail-dates-directive>
+        <detail-list-directive
+            list="item.description"
+            data-ng-hide="!item.toggle">
+        </detail-list-directive>
+        <div data-ng-click="toggleDetails(item)" class="toggle">
+            <span class="mdi mdi-chevron-down mdi-36px" data-ng-hide="item.toggle"></span>
+            <span class="mdi mdi-chevron-up mdi-36px" data-ng-hide="!item.toggle"></span>
+        </div>
+    </div>
+</div>

@@ -123,7 +123,8 @@ html {
     color: var(--color-4);
 }
 
-.detail-block .detail .detail-dates small {
+.detail-block .detail .detail-dates small, 
+.detail-block .detail .detail-label small {
     color: var(--color-4);
 }
 

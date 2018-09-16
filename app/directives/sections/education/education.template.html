@@ -1,0 +1,26 @@
+<div class="detail-block">
+    <detail-block-header-directive 
+        icon="'mdi-school'"
+        header="'Education'">
+    </detail-block-header-directive>
+    <div class="row detail" data-ng-repeat="item in details">
+        <div class="col s12 m2 l1">
+            <img class="responsive-img" data-ng-src="{{ item.pngURL }}" />
+        </div>
+        <div class="col s12 m10 l11">
+            <detail-header-directive
+                header="item.name">
+            </detail-header-directive>
+            <detail-sub-header-directive
+                sub-header="item.qualification.degree + ' in ' + item.qualification.major">
+            </detail-sub-header-directive>
+            <detail-label-directive
+                label="item.address.state + '  -  ' +  item.address.country">
+            </detail-label-directive>
+            <detail-dates-directive
+                start-date="item.start_date" 
+                end-date="item.end_date">
+            </detail-dates-directive>
+        </div>
+    </div>
+</div>
