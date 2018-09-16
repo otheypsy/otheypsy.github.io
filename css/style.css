@@ -103,6 +103,10 @@ html {
     border: none;
 }
 
+.detail-block .detail{
+    margin: 40px auto;
+}
+
 .detail-block .header {
     color: var(--color-7);
 }
