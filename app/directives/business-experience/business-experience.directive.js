@@ -7,7 +7,6 @@ directive('businessExperience', function(firebaseService) {
         link: function (scope) {
             firebaseService.get('business-experience').then(function (data) {
                 scope.details = data;
-                console.log(scope.details);
                 scope.$digest();
             });
         }
