@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ResumeApp">
+<html lang="en" data-ng-app="ResumeApp">
 <head>
     <meta charset="UTF-8">
     <title>Omkar Desai | Curriculum Vitae</title>
@@ -14,20 +14,31 @@
 <body>
     <div class="row">
         <div class="col s12 l3 xl2">
-            <personal-details></personal-details>
+            <personal-details-directive></personal-details-directive>
         </div>
         <div class="col s12 l9 xl10 main-content">
             <div class="row">
                 <div class="state-tab col s4">
-                    <a ui-sref-active="active"  ui-sref="overview">Overview</a>
+                    <a data-ui-sref-active="active"
+                        data-ui-sref="overview">
+                        Overview
+                    </a>
                 </div>
                 <div class="state-tab col s4">
-                    <a ui-sref-active="active"  ui-sref="resume">Resume</a>
+                    <a data-ui-sref-active="active"
+                        data-ui-sref="resume">
+                        Resume
+                    </a>
                 </div>
                 <div class="state-tab col s4">
-                    <a ui-sref-active="active"  ui-sref="github-projects">Github Projects</a>
+                    <a data-ui-sref-active="active"
+                        data-ui-sref="github-projects">
+                        Github Projects
+                    </a>
                 </div>
-                <div ui-view class="col s12"></div>
+                <div class="col s12">
+                    <ui-view></ui-view>
+                </div>
             </div>
         </div>
     </div>
@@ -45,18 +56,19 @@
     <script type="text/javascript" src="app/services/firebase.service.js"></script>
     <script type="text/javascript" src="app/services/github.service.js"></script>
     <!-- DIRECTIVES -->
-    <script type="text/javascript" src="app/directives/detail-block-header/detail-block-header.directive.js"></script>
-    <script type="text/javascript" src="app/directives/detail-header/detail-header.directive.js"></script>
-    <script type="text/javascript" src="app/directives/detail-sub-header/detail-sub-header.directive.js"></script>
-    <script type="text/javascript" src="app/directives/detail-list/detail-list.directive.js"></script>
-    <script type="text/javascript" src="app/directives/detail-dates/detail-dates.directive.js"></script>
-    <script type="text/javascript" src="app/directives/skill-table/skill-table.directive.js"></script>
-    <script type="text/javascript" src="app/directives/personal-details/personal-details.directive.js"></script>
-    <script type="text/javascript" src="app/directives/education/education.directive.js"></script>
-    <script type="text/javascript" src="app/directives/technical-skills/technical-skills.directive.js"></script>
-    <script type="text/javascript" src="app/directives/business-experience/business-experience.directive.js"></script>
-    <script type="text/javascript" src="app/directives/projects/projects.directive.js"></script>
-    <script type="text/javascript" src="app/directives/resume/resume.directive.js"></script>
+    <script type="text/javascript" src="app/directives/elements/detail-block-header/detail-block-header.directive.js"></script>
+    <script type="text/javascript" src="app/directives/elements/detail-header/detail-header.directive.js"></script>
+    <script type="text/javascript" src="app/directives/elements/detail-sub-header/detail-sub-header.directive.js"></script>
+    <script type="text/javascript" src="app/directives/elements/detail-list/detail-list.directive.js"></script>
+    <script type="text/javascript" src="app/directives/elements/detail-dates/detail-dates.directive.js"></script>
+    <script type="text/javascript" src="app/directives/elements/detail-label/detail-label.directive.js"></script>
+    <script type="text/javascript" src="app/directives/elements/skill-table/skill-table.directive.js"></script>
+    <script type="text/javascript" src="app/directives/sections/personal-details/personal-details.directive.js"></script>
+    <script type="text/javascript" src="app/directives/sections/education/education.directive.js"></script>
+    <script type="text/javascript" src="app/directives/sections/technical-skills/technical-skills.directive.js"></script>
+    <script type="text/javascript" src="app/directives/sections/business-experience/business-experience.directive.js"></script>
+    <script type="text/javascript" src="app/directives/sections/projects/projects.directive.js"></script>
+    <script type="text/javascript" src="app/directives/sections/resume/resume.directive.js"></script>
     <!-- COMPONENTS -->
     <script type="text/javascript" src="app/components/overview/overview.component.js"></script>
     <script type="text/javascript" src="app/components/resume/resume.component.js"></script>
