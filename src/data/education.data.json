@@ -1,0 +1,24 @@
+[
+    {
+        "name": "University of Texas, Dallas",
+        "imgUrl": "/img/utdallas.png",
+        "roles": [
+            {
+                "title": "MS - Information Technology and Management",
+                "start": "August 2015",
+                "end": "May 2017"
+            }
+        ]
+    },
+    {
+        "name": "Goa University",
+        "imgUrl": "/img/goa_uni.png",
+        "roles": [
+            {
+                "title": "BE - Information Technology",
+                "start": "July 2009",
+                "end": "June 2013"
+            }
+        ]
+    }
+]

@@ -1,0 +1,163 @@
+:root {
+    --color-1: #FFF8DC;
+    --color-2: #e8ddb5;
+    --color-3: #edafb8;
+    --color-4: #5d576b;
+    --color-5: #2c497f;
+    --color-6: #464f51;
+    --color-7: #0e3b43;
+}
+
+html {
+    height:100%;
+    font-family: 'Varela Round', sans-serif;
+    background-color: var(--color-1);
+    color: var(--color-5);
+}
+
+.modal {
+    width: 80%;
+}
+
+.btn-flat {
+    border: 1px solid var(--color-2);
+}
+
+.btn-flat:hover {
+    background-color: var(--color-2);
+}
+
+.responsive-svg, .responsive-img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.personal-details .profile-img{
+    max-width: 250px;
+    padding: 20px;
+}
+
+.personal-details hr {
+    border: none;
+    border-top: 1px dotted var(--color-3);
+    margin: 0 2rem 1.5rem 2rem;
+}
+
+.personal-details .detail {
+    margin: 20px 20px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.personal-details .detail .header {
+    color: var(--color-7);
+    text-transform: capitalize;
+}
+
+.personal-details .detail .detail-value {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-5);
+}
+
+.personal-details .detail .detail-media {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-4);
+}
+
+.main-content {
+    border-left: 1px dotted var(--color-3);
+}
+
+.main-content .tabs {
+    background: transparent;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+.main-content .state-tab a {
+    outline: 0;
+    display: inline-block;
+    color: var(--color-4);
+    font-size: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 20px 10px 10px 10px;
+}
+
+.main-content .state-tab .active {
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-4);
+}
+
+.main-content .detail-block {
+    padding: 2rem 1rem;
+    border-bottom: 1px dotted var(--color-3);
+}
+
+.main-content .detail-block.last {
+    border: none;
+}
+
+.detail-block .detail{
+    margin: 40px auto;
+}
+
+.detail-block .header {
+    color: var(--color-7);
+}
+
+.detail-block .detail .header{
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: var(--color-6);
+}
+
+.detail-block .detail .sub-header{
+    margin: 1rem 0 0 0;
+    font-size: 1.3rem;
+    color: var(--color-4);
+}
+
+.detail-block .detail .detail-dates small, 
+.detail-block .detail .detail-label small {
+    color: var(--color-4);
+}
+
+.detail-block .detail .detail-list{
+    margin: 0.1rem;
+    color: var(--color-5);
+    border-left: 1px dashed var(--color-5);
+}
+
+.detail-block .detail .detail-list li:before {
+    padding-right: 0.5rem;
+    color: var(--color-5);
+    content: '--';
+}
+
+.detail-block .skill-table tr {
+    border-bottom: 1px dotted var(--color-2);
+}
+
+.detail-block .skill-table tr:last-child {
+    border: none;
+}
+
+.detail-block .skill-table .chip{
+    color: var(--color-4);
+    background-color: var(--color-2);
+    border: 1px solid var(--color-3);
+}
+
+.detail-block .skill-table .toggle {
+    cursor: pointer;
+}
+
+.main-content .resume {
+    margin: 2rem;
+}

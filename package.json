@@ -1,0 +1,53 @@
+{
+    "name": "otheypsy.gith",
+    "license": "UNLICENSED",
+    "version": "0.1.0",
+    "description": "Personal website using GitHub Pages",
+    "homepage": "https://otheypsy.github.io/",
+    "author": {
+        "name": "Omkar Desai",
+        "email": "omkar.desai.1991@gmail.com"
+    },
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/otheypsy/otheypsy.github.io.git"
+    },
+    "scripts": {
+        "audit": "npm i --package-lock-only && npm audit fix && del package-lock.json",
+        "lint": "eslint ./src && stylelint ./src",
+        "test": "vitest run --config vite.config.js",
+        "start": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^4.1.0",
+        "bootstrap": "^5.3.2",
+        "eslint": "^8.51.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-import": "^2.28.1",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-prettier": "^5.0.1",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "prettier": "^3.0.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.16.0",
+        "sass": "^1.69.3",
+        "stylelint": "^15.10.3",
+        "vite": "^4.3.9",
+        "vite-plugin-eslint": "^1.8.1",
+        "vite-plugin-svgr": "^2.2.2",
+        "vitest": "^0.29.7"
+    },
+    "engines": {
+        "node": ">= 16.14.2",
+        "npm": ">= 8.5.0"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ]
+}

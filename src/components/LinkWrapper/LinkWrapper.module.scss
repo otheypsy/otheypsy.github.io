@@ -1,0 +1,9 @@
+.link {
+  cursor: pointer;
+  padding-bottom: 4px;
+  border-bottom: 3px dashed transparent;
+}
+
+.active {
+  border-bottom: 3px dashed var(--color-3);
+}
