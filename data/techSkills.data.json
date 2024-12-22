@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Technologies",
+        "type": "icons",
+        "skills": [
+            "js",
+            "node",
+            "html5",
+            "css3-alt",
+            "react",
+            "angular",
+            "php",
+            "python",
+            "android"
+        ]
+    },
+    {
+        "name": "Methodologies",
+        "type": "string",
+        "skills": [
+            "Agile",
+            "SCRUM",
+            "ITIL",
+            "Lean IT"
+        ]
+    },
+    {
+        "name": "Databases",
+        "type": "string",
+        "skills": [
+            "SQL",
+            "NoSQL",
+            "Oracle",
+            "MySQL",
+            "MongoDB"
+        ]
+    }
+]

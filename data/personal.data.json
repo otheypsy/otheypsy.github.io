@@ -1,0 +1,25 @@
+{
+    "name": "Omkar Desai",
+    "work": {
+        "role": "Solutions Engineer",
+        "company": "PayPal"
+    },
+    "location": "Scottsdale, AZ",
+    "socials": [
+        {
+            "name": "linkedin",
+            "url": "https://www.linkedin.com/in/omkardesai1991/",
+            "iconCss": "fa-brands fa-linkedin-in"
+        },
+        {
+            "name": "github",
+            "url": "https://github.com/otheypsy",
+            "iconCss": "fa-brands fa-github"
+        },
+        {
+            "name": "website",
+            "url": "https://otheypsy.com/",
+            "iconCss": "fa-solid fa-globe"
+        }
+    ]
+}

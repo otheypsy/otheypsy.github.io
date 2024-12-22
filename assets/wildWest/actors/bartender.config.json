@@ -1,0 +1,19 @@
+{
+    "tileheight": 25,
+    "tilewidth": 25,
+    "tilesets": [
+        {
+            "firstgid": 1,
+            "folderName": "npc",
+            "fileName": "npc"
+        }
+    ],
+    "sprites": {
+        "idle": [4]
+    },
+    "start": {
+        "x": 45,
+        "y": 30
+    },
+    "dialogue": "You there, wanna chat about Omkar's technical skills?\n\nPress `E` to interact"
+}
