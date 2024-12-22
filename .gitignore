@@ -2,6 +2,7 @@
 
 # ide
 /.idea/
+/.vscode/
 /.run/
 
 # dependencies

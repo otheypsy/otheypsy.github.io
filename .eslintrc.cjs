@@ -10,7 +10,10 @@ module.exports = {
         ecmaFeatures: {
             jsx: true,
         },
+        project: './tsconfig.json'
     },
+
+    parser: '@typescript-eslint/parser',
 
     extends: [
         'eslint:recommended',
@@ -19,10 +22,18 @@ module.exports = {
         'plugin:react-hooks/recommended',
         'plugin:import/recommended',
         'plugin:jsx-a11y/recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
         'prettier',
     ],
 
-    plugins: ['react', 'import', 'jsx-a11y', 'prettier'],
+    plugins: [
+        'react',
+        'import',
+        'jsx-a11y',
+        '@typescript-eslint',
+        'prettier'
+    ],
 
     settings: {
         react: {

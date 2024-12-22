@@ -1,12 +1,12 @@
 {
-    "name": "otheypsy.gith",
+    "name": "otheypsy.github.io",
     "license": "UNLICENSED",
     "version": "0.1.0",
     "description": "Personal website using GitHub Pages",
     "homepage": "https://otheypsy.github.io/",
     "author": {
         "name": "Omkar Desai",
-        "email": "omkar.desai.1991@gmail.com"
+        "email": "otheypsy@gmail.com"
     },
     "type": "module",
     "repository": {
@@ -15,31 +15,39 @@
     },
     "scripts": {
         "audit": "npm i --package-lock-only && npm audit fix && del package-lock.json",
-        "lint": "eslint ./src && stylelint ./src",
+        "lint": "eslint ./src && stylelint ./src && tsc --noEmit",
         "test": "vitest run --config vite.config.js",
         "start": "vite",
         "build": "vite build"
     },
     "devDependencies": {
+        "@types/react": "^19.0.2",
+        "@types/react-dom": "^19.0.2",
+        "@typescript-eslint/eslint-plugin": "^8.11.0",
+        "@typescript-eslint/parser": "^8.11.0",
         "@vitejs/plugin-react": "^4.1.0",
         "bootstrap": "^5.3.2",
-        "eslint": "^8.51.0",
+        "eslint": "^9.13.0",
         "eslint-config-prettier": "^9.0.0",
+        "eslint-config-standard-with-typescript": "^43.0.1",
         "eslint-plugin-import": "^2.28.1",
         "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-n": "^17.11.1",
         "eslint-plugin-prettier": "^5.0.1",
+        "eslint-plugin-promise": "^7.1.0",
         "eslint-plugin-react": "^7.33.2",
-        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-hooks": "^5.0.0",
         "prettier": "^3.0.3",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
         "react-router-dom": "^6.16.0",
         "sass": "^1.69.3",
-        "stylelint": "^15.10.3",
-        "vite": "^4.3.9",
+        "stylelint": "^16.10.0",
+        "typescript": "^5.4.2",
+        "vite": "^5.4.10",
         "vite-plugin-eslint": "^1.8.1",
-        "vite-plugin-svgr": "^2.2.2",
-        "vitest": "^0.29.7"
+        "vite-plugin-svgr": "^4.2.0",
+        "vitest": "^2.1.3"
     },
     "engines": {
         "node": ">= 16.14.2",
@@ -49,5 +57,8 @@
         "> 1%",
         "last 2 versions",
         "not ie <= 8"
-    ]
+    ],
+    "dependencies": {
+        "@popperjs/core": "^2.11.8"
+    }
 }

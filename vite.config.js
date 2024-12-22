@@ -6,25 +6,17 @@ import svgrPlugin from 'vite-plugin-svgr'
 export default defineConfig({
     plugins: [
         react(),
-        svgrPlugin(),
-        {
-            // default settings on build (i.e. fail on error)
-            ...eslint({
-                failOnWarning: false,
-                failOnError: false,
-            }),
-            apply: 'build',
-        },
-        {
-            // do not fail on serve (i.e. local development)
-            ...eslint({
-                failOnWarning: false,
-                failOnError: false,
-            }),
-            apply: 'serve',
-            enforce: 'post',
-        },
+        svgrPlugin()
     ],
+
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'modern',
+                silenceDeprecations: ['mixed-decls', 'color-functions', 'global-builtin', 'import']
+            },
+        }
+    },
 
     server: {
         port: 3000,
