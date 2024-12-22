@@ -5,11 +5,11 @@ const PersonalDetails = () => {
     if(!personalData) return null
     return (
         <>
-            <div className="text-center">
+            <div className="text-center pt-5">
                 <img
                     alt={personalData.name}
                     className="img-fluid mx-auto d-block py-5 rounded-circle"
-                    src="/img/profile.png"
+                    src="/img/profile_2.png"
                 />
                 <h1 className="display-5">{personalData.name}</h1>
                 <br />
