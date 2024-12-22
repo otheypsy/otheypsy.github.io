@@ -1,0 +1,53 @@
+[
+    {
+        "name": "PayPal",
+        "imgUrl": "/img/paypal.svg",
+        "roles": [
+            {
+                "title": "Senior Product Manager - Technical",
+                "start": "October 2024",
+                "end": "Present"
+            },
+            {
+                "title": "Senior Solutions Engineer",
+                "start": "November 2021",
+                "end": "October 2024"
+            },
+            {
+                "title": "Integration Engineer",
+                "start": "March 2020",
+                "end": "November 2021"
+            },
+            {
+                "title": "Technical Account Manager",
+                "start": "August 2019",
+                "end": "March 2020"
+            },
+            {
+                "title": "Global Technical Support Engineer",
+                "start": "September 2017",
+                "end": "August 2019"
+            }
+        ]
+    },
+    {
+        "name": "Sanvik Computer Consultants",
+        "roles": [
+            {
+                "title": "Software Engineer",
+                "start": "August 2013",
+                "end": "April 2015"
+            }
+        ]
+    },
+    {
+        "name": "Eltrosoftwares",
+        "roles": [
+            {
+                "title": "Freelance Web Developer",
+                "start": "January 2014",
+                "end": "February 2015"
+            }
+        ]
+    }
+]

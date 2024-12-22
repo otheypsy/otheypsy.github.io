@@ -1,77 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="ResumeApp">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Omkar Desai | Curriculum Vitae</title>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    <link href="css/materialdesignicons.min.css" rel="stylesheet" type='text/css'>
-    <link href="css/style.css" rel="stylesheet" type='text/css'>
-    <link href="css/responsive.css" rel="stylesheet" type='text/css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Omkar Desai</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 </head>
 <body>
-    <div class="row">
-        <div class="col s12 l3 xl2">
-            <personal-details-directive></personal-details-directive>
-        </div>
-        <div class="col s12 l9 xl10 main-content">
-            <div class="row">
-                <div class="state-tab col s4">
-                    <a data-ui-sref-active="active"
-                        data-ui-sref="overview">
-                        Overview
-                    </a>
-                </div>
-                <div class="state-tab col s4">
-                    <a data-ui-sref-active="active"
-                        data-ui-sref="resume">
-                        Resume
-                    </a>
-                </div>
-                <div class="state-tab col s4">
-                    <a data-ui-sref-active="active"
-                        data-ui-sref="github-projects">
-                        Github Projects
-                    </a>
-                </div>
-                <div class="col s12">
-                    <ui-view></ui-view>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- SCRIPTS -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.9/angular-sanitize.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
-    <script type="text/javascript" src="app/app.states.js"></script>
-    <!-- SERVICES -->
-    <script type="text/javascript" src="app/services/global.service.js"></script>
-    <script type="text/javascript" src="app/services/firebase.service.js"></script>
-    <script type="text/javascript" src="app/services/github.service.js"></script>
-    <!-- DIRECTIVES -->
-    <script type="text/javascript" src="app/directives/elements/detail-block-header/detail-block-header.directive.js"></script>
-    <script type="text/javascript" src="app/directives/elements/detail-header/detail-header.directive.js"></script>
-    <script type="text/javascript" src="app/directives/elements/detail-sub-header/detail-sub-header.directive.js"></script>
-    <script type="text/javascript" src="app/directives/elements/detail-list/detail-list.directive.js"></script>
-    <script type="text/javascript" src="app/directives/elements/detail-dates/detail-dates.directive.js"></script>
-    <script type="text/javascript" src="app/directives/elements/detail-label/detail-label.directive.js"></script>
-    <script type="text/javascript" src="app/directives/elements/skill-table/skill-table.directive.js"></script>
-    <script type="text/javascript" src="app/directives/sections/personal-details/personal-details.directive.js"></script>
-    <script type="text/javascript" src="app/directives/sections/education/education.directive.js"></script>
-    <script type="text/javascript" src="app/directives/sections/technical-skills/technical-skills.directive.js"></script>
-    <script type="text/javascript" src="app/directives/sections/business-experience/business-experience.directive.js"></script>
-    <script type="text/javascript" src="app/directives/sections/projects/projects.directive.js"></script>
-    <script type="text/javascript" src="app/directives/sections/resume/resume.directive.js"></script>
-    <!-- COMPONENTS -->
-    <script type="text/javascript" src="app/components/overview/overview.component.js"></script>
-    <script type="text/javascript" src="app/components/resume/resume.component.js"></script>
-    <script type="text/javascript" src="app/components/github-projects/github-projects.component.js"></script>
+    <div id="root"></div>
+    <script type="module" src="src/index.tsx"></script>
 </body>
 </html>

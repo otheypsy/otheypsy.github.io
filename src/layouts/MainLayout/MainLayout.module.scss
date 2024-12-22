@@ -1,0 +1,15 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.content {
+  height: 100%;
+}
+
+@include media-breakpoint-up(xl) {
+  .content {
+    border-left: 3px dashed var(--color-3);
+    height: 100%;
+  }
+}
+
