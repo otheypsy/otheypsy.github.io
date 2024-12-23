@@ -1,0 +1,77 @@
+name: Merge
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    environment: development
+
+    strategy:
+      matrix:
+        node-version: [ 20.x, 18.x ]
+
+    steps:
+      - name: checkout ${{ github.head_ref || github.ref_name }} branch
+        uses: actions/checkout@v3
+
+
+      - name: use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install node modules
+        run: yarn install
+        env:
+          CI: true
+
+      - name: lint code using eslint
+        run: yarn lint:eslint
+        env:
+          CI: true
+      
+
+      - name: lint code using tsc
+        run: yarn lint:tsc
+        env:
+          CI: true
+          
+
+      - name: lint code using stylelint
+        run: yarn lint:stylelint
+        env:
+          CI: true
+  
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    environment: production
+
+    strategy:
+      matrix:
+        node-version: [ 20.x, 18.x ]
+
+    steps:
+      - name: checkout ${{ github.head_ref || github.ref_name }}  branch
+        uses: actions/checkout@v3
+
+
+      - name: use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install node modules
+        run: yarn install
+        env:
+          CI: true
+
+      - name: build application bundle
+        run: yarn build
+        env:
+          CI: true
