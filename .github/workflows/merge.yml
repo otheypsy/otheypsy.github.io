@@ -16,7 +16,7 @@ jobs:
         node-version: [ 20.x, 18.x ]
 
     steps:
-      - name: checkout dev branch
+      - name: checkout ${{ github.head_ref || github.ref_name }} branch
         uses: actions/checkout@v3
 
 
@@ -57,7 +57,7 @@ jobs:
         node-version: [ 20.x, 18.x ]
 
     steps:
-      - name: checkout dev branch
+      - name: checkout ${{ github.head_ref || github.ref_name }}  branch
         uses: actions/checkout@v3
 
 
