@@ -19,7 +19,9 @@ class TileMap {
         })
     }
 
-    drawTileMap = (data: unknown): void => {}
+    drawTileMap = (data: unknown): void => {
+        console.log('TileMap::drawTileMap::' + data)
+    }
 
 }
 export default TileMap

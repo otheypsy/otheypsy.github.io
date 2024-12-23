@@ -1,8 +1,0 @@
-node_modules/
-client/build/
-.env
-.prettierrc
-.stylelintrc.json
-.eslintrc.cjs
-.pnp.*
-.yarn/*

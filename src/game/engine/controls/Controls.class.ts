@@ -22,7 +22,7 @@ class Controls {
 
     readonly #checkKeyboard = (observer: InputObserver): void => {
         for (const input of observer.inputs) {
-            if (this.#keyboard?.keys[input]?.pressed === true) {
+            if (this.#keyboard?.getKeys()[input]?.pressed === true) {
                 observer.callback(input, 'keyboard')
             }
         }
@@ -30,7 +30,7 @@ class Controls {
 
     readonly #checkTouchscreen = (observer: InputObserver): void => {
         for (const input of observer.inputs) {
-            if (this.#touchscreen?.touches[input]?.active === true) {
+            if (this.#touchscreen?.getTouches()[input]?.active === true) {
                 observer.callback(input, 'touchscreen')
             }
         }

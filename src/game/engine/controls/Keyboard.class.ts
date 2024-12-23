@@ -28,7 +28,7 @@ class Keyboard {
         })
     }
 
-    get keys(): object {
+    getKeys = (): Record<string, { pressed: boolean }> => {
         return this.#keys
     }
 }

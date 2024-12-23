@@ -1,7 +1,21 @@
 import useFetch from '../hooks/useFetchJson.hook'
 
+interface PersonalData {
+    name: string
+    work: {
+        role: string
+        company: string
+    };
+    location: string
+    socials: {
+        name: string
+        url: string
+        iconCss: string
+    }[];
+}
+
 const PersonalDetails = () => {
-    const personalData = useFetch('/data/personal.data.json')
+    const personalData = useFetch('/data/personal.data.json') as PersonalData
     if(!personalData) return null
     return (
         <>
@@ -9,7 +23,7 @@ const PersonalDetails = () => {
                 <img
                     alt={personalData.name}
                     className="img-fluid mx-auto d-block py-5 rounded-circle"
-                    src="/img/profile_2.png"
+                    src="/img/profile_1.png"
                 />
                 <h1 className="display-5">{personalData.name}</h1>
                 <br />

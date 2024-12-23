@@ -8,7 +8,7 @@ const style = {
 
 class GameCanvas {
     readonly element: HTMLCanvasElement
-    readonly context: CanvasRenderingContext2D
+    readonly context: CanvasRenderingContext2D | null
     readonly center: PixelPosition
 
     constructor(container: HTMLElement, scale: number = 1) {
@@ -31,14 +31,14 @@ class GameCanvas {
         element.style.imageRendering = 'pixelated'
     }
 
-    readonly #initCanvas = (canvas: HTMLCanvasElement, container: HTMLElement): CanvasRenderingContext2D => {
+    readonly #initCanvas = (canvas: HTMLCanvasElement, container: HTMLElement): CanvasRenderingContext2D | null => {
         container.append(canvas)
-        const context = canvas.getContext('2d', { alpha: false }) as CanvasRenderingContext2D
+        const context = canvas.getContext('2d', { alpha: false })
+        if (!context) {
+            console.warn('CanvasRenderingContext2D not supported')
+            return null
+        }
         context.imageSmoothingEnabled = false
-        context.mozImageSmoothingEnabled = false
-        context.oImageSmoothingEnabled = false
-        context.webkitImageSmoothingEnabled = false
-        context.msImageSmoothingEnabled = false
         return context
     }
 }

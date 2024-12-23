@@ -2,7 +2,17 @@ import classNames from './Organization.module.scss'
 
 const logoClassNames = classNames.logo + ' img-fluid me-3'
 
-const Organization = (props) => {
+interface OrganizationProps {
+    imgUrl?: string;
+    name: string;
+    roles: {
+        title: string;
+        start: string;
+        end: string;
+    }[];
+}
+
+const Organization = (props: OrganizationProps) => {
     return (
         <div className="p-4">
             <h4>
