@@ -2,7 +2,7 @@ import classNames from './Overview.module.scss'
 import BusinessExperience from '../../features/BusinessExperience.component'
 import Education from '../../features/Education.component'
 import TechnicalSkills from '../../features/TechnicalSkills.component'
-import Projects from '../../features/Projects.component'
+// import Projects from '../../features/Projects.component'
 
 const Overview = () => {
     return (
@@ -19,6 +19,7 @@ const Overview = () => {
                 <TechnicalSkills />
             </div>
             {/*
+            TODO: Complete projects section 
             <div className={classNames.separator} />
             <div className="p-4">
                 <Projects />

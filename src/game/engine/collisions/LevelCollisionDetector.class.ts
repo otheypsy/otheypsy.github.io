@@ -48,6 +48,7 @@ class LevelCollisionDetector {
 
     checkCollision = (level: Level, actor: Actor, direction: Direction, offset: number = 1): boolean => {
         const collisions = level.getTileMap('0')
+        if(!collisions) return false
         const currentPix = actor.movable.getMapPixPos()
         const { x, y } = level.helper.pixToTile(currentPix.xPix, currentPix.yPix)
         for (let i = x - 3; i <= x + 3; i++) {

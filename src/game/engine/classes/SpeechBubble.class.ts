@@ -3,16 +3,16 @@ import type BaseRenderer from '../graphics/BaseRenderer.class'
 
 const style = {
     text: {
-        'font': '1.2rem Courier New',
-        'textAlign': 'center',
-        'textBaseline': 'top',
-        'strokeStyle': '#6c757d',
-        'fillStyle': '#6c757d',
+        font: '1.2rem Courier New',
+        textAlign: 'center',
+        textBaseline: 'top',
+        strokeStyle: '#6c757d',
+        fillStyle: '#6c757d',
     },
     bubble: {
-        'strokeStyle': '#6c757d',
-        'fillStyle': 'white',
-        'lineWidth': 3,
+        strokeStyle: '#6c757d',
+        fillStyle: 'white',
+        lineWidth: 3,
     },
 }
 class SpeechBubble {
@@ -54,7 +54,7 @@ class SpeechBubble {
         renderer.saveContext()
         renderer.setScale(1 / this.#config.getScale())
         renderer.configureStyle(style.text)
-        const wrapped = renderer.getWrappedText(text, width - this.#padding * 2)
+        const wrapped = renderer.getWrappedText(text, width - this.#padding * 2) as { wrappedText: string[]; height: number }
 
         renderer.configureStyle(style.bubble)
         const path = this.#getUpBubblePath(

@@ -2,34 +2,47 @@ import { memo, useState, useEffect, useRef } from 'react'
 import classNames from './Game.module.scss'
 import WildWestGame from "../../game/wildWest/WildWestGame.class"
 import WildWestCommand from "../../game/wildWest/WildWestCommand.class"
-import Modal from '../../components/Modal.component'
-import { Modal as BootstrapModal } from 'bootstrap'
+import { Modal } from '../../components/Modal.component'
 
-const npcMapping = {
+import type { ModalHandler } from '../../components/Modal.component'
+
+const npcMapping: {[index: string]:string} = {
     worker: 'business_experience',
     bartender: 'technical_skills',
     sheriff: 'education'
 }
 
-const Game: React.FC = memo(() => {
-    const gameCommand: React.MutableRefObject<WildWestCommand | undefined> = useRef()
-    const gameContainer = useRef(null)
-    const modalRef = useRef(null)
+const defaultConfig = {
+    scale: 4,
+    moveSpeed: 2,
+    fps: 120,
+}
 
-    const [moveSpeed, setMoveSpeed] = useState(2)
-    const [scale, setScale] = useState(4)
-    const [fps, setFPS] = useState(120)
+const Game: React.FC = memo(() => {
+    const command: React.RefObject<WildWestCommand | null> = useRef(null)
+    const gameContainer = useRef(null)
+    const modalRef: React.RefObject<ModalHandler | null> = useRef(null)
+
+    const [moveSpeed, setMoveSpeed] = useState(defaultConfig.moveSpeed)
+    const [scale, setScale] = useState(defaultConfig.scale)
+    const [fps, setFPS] = useState(defaultConfig.fps)
 
     const onChangeMoveSpeed = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setMoveSpeed(parseInt(e.target.value))
+        const speed = parseInt(e.target.value)
+        setMoveSpeed(speed)
+        command.current?.game.player.movable.setMoveSpeed(speed)
     }
 
     const onChangeScale = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setScale(parseInt(e.target.value))
+        const scale = parseInt(e.target.value)
+        setScale(scale)
+        command.current?.game.config.setScale(scale)
     }
     
     const onChangeFPS = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setFPS(parseInt(e.target.value))
+        const fps = parseInt(e.target.value)
+        setFPS(fps)
+        command.current?.game.config.setFPS(fps)
     }
 
     useEffect(() => {
@@ -39,28 +52,28 @@ const Game: React.FC = memo(() => {
             await game.initialize({
                 container: gameContainer.current,
                 interactHandler: (name: string) => {
-                    modalRef.current.openModal(npcMapping[name])
+                    modalRef.current?.openModal(npcMapping[name])
                 }
             })
-            gameCommand.current = new WildWestCommand(game)
-            gameCommand.current.initialize()
-            gameCommand.current.start()
-            gameCommand.current.game.player.movable.setMoveSpeed(moveSpeed)
-            gameCommand.current.game.config.setScale(scale)
-            gameCommand.current.game.config.setFPS(fps)
-            // window.gameCommand = gameCommand.current
+            command.current = new WildWestCommand(game)
+            command.current.initialize()
+            command.current.start()
+            command.current.game.player.movable.setMoveSpeed(defaultConfig.moveSpeed)
+            command.current.game.config.setScale(defaultConfig.scale)
+            command.current.game.config.setFPS(defaultConfig.fps)
+            // window.gameCommand = command.current
         }
         gameInit()
 
         return () => { 
-            gameCommand.current?.stop()
+            command.current?.stop()
         }
     }, [])
 
     return (
         <>
             <Modal ref={modalRef} />
-            <div className={classNames.gameContainer + ' w-100'} ref={gameContainer} />
+            <div className={classNames['game-container'] + ' w-100'} ref={gameContainer} />
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#gamebar" aria-controls="gamebar" aria-expanded="false" aria-label="Toggle Game Bar">
@@ -93,5 +106,7 @@ const Game: React.FC = memo(() => {
         </>
     )
 })
+
+Game.displayName = 'Game'
 
 export default Game

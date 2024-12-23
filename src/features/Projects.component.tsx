@@ -1,7 +1,5 @@
-import { use } from 'react'
-import { loadJSON } from '../utils/core.utils'
-
 const Projects = () => {
+    return null
     return (
         <>
             <h1 className="my-5">

@@ -31,7 +31,7 @@ const SkillCategory = (props: {
         <div className="p-5">
             <div className="row">
                 <div className="col-md-12 col-xl-3 col-xxl-2">
-                    <div className={'d-flex align-items-center justify-content-center ' + classNames.labelContainer}>
+                    <div className={'d-flex align-items-center justify-content-center ' + classNames['label-container']}>
                         <h4>{props.label}</h4>
                     </div>
                 </div>

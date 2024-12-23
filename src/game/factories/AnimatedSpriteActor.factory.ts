@@ -4,6 +4,12 @@ import AnimatedSpriteActor from '../engine/actors/AnimatedSpriteActor.class'
 import MapMovable from '../engine/abstract/MapMovable.class'
 import SpriteAnimation from '../engine/animations/SpriteAnimation.class'
 
+interface TileSetConfigJSON {
+    folderName: string,
+    fileName: string,
+    firstgid: number,
+}
+
 interface CreateNPC {
     gameName: string
     tilesets: object[]
@@ -12,7 +18,7 @@ interface CreateNPC {
     sprites: Record<string, number[]>
 }
 
-const handleTileSets = async (gameName: string, tileSetAggregate: AggregateTileSet, tileSets: object[]): Promise<void> => {
+const handleTileSets = async (gameName: string, tileSetAggregate: AggregateTileSet, tileSets: TileSetConfigJSON[]): Promise<void> => {
     for (const tileSet of tileSets) {
         const tileSetObj = await TileSetFactory.create({
             gameName,
@@ -32,7 +38,7 @@ const create = async (npc: CreateNPC): Promise<AnimatedSpriteActor> => {
     }
 
     const tileSetAggregate = new AggregateTileSet()
-    await handleTileSets(npc.gameName, tileSetAggregate, npc.tilesets)
+    await handleTileSets(npc.gameName, tileSetAggregate, (npc.tilesets as TileSetConfigJSON[]))
     const animation = new SpriteAnimation(npc.sprites)
     const movable = new MapMovable()
 

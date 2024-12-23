@@ -1,8 +1,14 @@
 import useFetch from '../hooks/useFetchJson.hook'
 import SkillCategory from '../components/SkillCategory/SkillCategory.component'
 
+interface TechSkillsData {
+    name: string
+    type: string
+    skills: string[]
+}
+
 const TechnicalSkills = () => {
-    const techSkillsData = useFetch('/data/techSkills.data.json')
+    const techSkillsData = useFetch('/data/techSkills.data.json') as TechSkillsData[]
     if(!techSkillsData) return null
     return (
         <>

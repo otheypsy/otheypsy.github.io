@@ -1,7 +1,11 @@
 import Directions from '../abstract/Directions.static'
 
 class Touchscreen {
-    readonly #touches: object
+    readonly #touches: {
+        [key: string]: {
+            active: boolean
+        },
+    }
 
     constructor(element: HTMLCanvasElement) {
         this.#touches = {}
@@ -13,7 +17,8 @@ class Touchscreen {
 
     readonly #initDirections = (): void => {
         for (const direction in Directions) {
-            this.#touches[Directions[direction].label] = {
+            const key = direction as keyof typeof Directions;
+            this.#touches[Directions[key].label] = {
                 active: false,
             }
         }
@@ -63,7 +68,11 @@ class Touchscreen {
         })
     }
 
-    get touches(): object {
+    getTouches = (): {
+        [key: string]: {
+            active: boolean
+        },
+    } => {
         return this.#touches
     }
 }

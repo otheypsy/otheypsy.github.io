@@ -16,17 +16,40 @@ import { loadJSON } from '../../utils/core.utils'
 
 import type Level from '../engine/level/Level.class'
 
+interface ActorConfigJSON {
+    tilesets: object[],
+    tilewidth: number,
+    tileheight: number,
+    sprites: Record<string, number[]>,
+    start: {
+        x: number,
+        y: number
+    },
+    dialogue?: string
+}
+
+interface LevelConfigJSON {
+    xMax: number,
+    yMax: number,
+    width: number,
+    height: number,
+    tilewidth: number,
+    tileheight: number,
+    tilesets: object[],
+    layers: object[],
+}
+
 class WildWestGame {
-    config: GameConfig
-    camera: Camera
-    canvas: GameCanvas
-    level: Level
-    controls: Controls
-    baseRenderer: BaseRenderer
-    mapRenderer: MapRenderer
-    collisionDetector: LevelCollisionDetector
-    player: AnimatedSpriteActor
-    npcs: NPC[]
+    config!: GameConfig
+    camera!: Camera
+    canvas!: GameCanvas
+    level!: Level
+    controls!: Controls
+    baseRenderer!: BaseRenderer
+    mapRenderer!: MapRenderer
+    collisionDetector!: LevelCollisionDetector
+    player!: AnimatedSpriteActor
+    npcs!: NPC[]
 
     readonly #createCore = (container: HTMLElement): void => {
         this.config = new GameConfig()
@@ -48,21 +71,21 @@ class WildWestGame {
     }
 
     readonly #creatLevel = async (): Promise<void> => {
-        const levelTileMap = await loadJSON('/assets/wildWest/tilemaps/main/main.tilemap.json')
+        const levelTileMap = await loadJSON('/assets/wildWest/tilemaps/main/main.tilemap.json') as LevelConfigJSON
         this.level = await LevelFactory.create({
             gameName: 'wildWest',
             xMax: levelTileMap.width,
             yMax: levelTileMap.height,
             xPixUnit: levelTileMap.tilewidth,
             yPixUnit: levelTileMap.tileheight,
-            layers: levelTileMap.layers,
             tilesets: levelTileMap.tilesets,
+            layers: levelTileMap.layers,
         })
         this.collisionDetector = new LevelCollisionDetector()
     }
 
     readonly #createPlayer = async (): Promise<void> => {
-        const playerConfig = await loadJSON('/assets/wildWest/actors/player.config.json')
+        const playerConfig = await loadJSON('/assets/wildWest/actors/player.config.json') as ActorConfigJSON
         this.player = await AnimatedSpriteActorFactory.create({
             gameName: 'wildWest',
             tilesets: playerConfig.tilesets,
@@ -72,18 +95,20 @@ class WildWestGame {
         })
         const playerStartPos = this.level.helper.tileToPix(playerConfig.start.x, playerConfig.start.y)
         this.player.movable.setMapPixPos(playerStartPos.xPix, playerStartPos.yPix)
-        this.player.movable.setMoveSpeed(document.getElementById('speed')?.value ?? 1)
         this.camera.setMapOffset(this.player.movable.getMapPixPos())
-        console.log('Player Created')
     }
 
-    readonly #createNPCs = async (interactHandler = (name: string) => {}): Promise<void> => {
+    readonly #createNPCs = async (
+        interactHandler = (name: string) => {
+            console.log('WildWestGame::#createNPCs::interactHandler', name)
+        }
+    ): Promise<void> => {
         this.npcs = []
         const speechBubble = new SpeechBubble(this.config)
         const requiredNPCs = ['traveller', 'worker', 'bartender', 'sheriff']
 
         for (const npc of requiredNPCs) {
-            const config = await loadJSON('/assets/wildWest/actors/' + npc + '.config.json')
+            const config = await loadJSON('/assets/wildWest/actors/' + npc + '.config.json') as ActorConfigJSON
             const actor = await AnimatedSpriteActorFactory.create({
                 gameName: 'wildWest',
                 tilesets: config.tilesets,
@@ -93,11 +118,10 @@ class WildWestGame {
             })
             const startPixPos = this.level.helper.tileToPix(config.start.x, config.start.y)
             actor.movable.setMapPixPos(startPixPos.xPix, startPixPos.yPix)
-            const instance = new NPC(npc, actor, speechBubble, config.dialogue, config.modalType)
+            const instance = new NPC(npc, actor, speechBubble, config.dialogue)
             instance.setInteractHandler(interactHandler)
             this.npcs.push(instance)
         }
-
     }
 
     readonly #registerSettingsForm = (): void => {
@@ -112,10 +136,10 @@ class WildWestGame {
     }
 
     initialize = async (options: {
-        container: HTMLElement | null,
+        container: HTMLElement | null
         interactHandler: (name: string) => void
     }): Promise<void> => {
-        if(!options.container) return
+        if (!options.container) return
         this.#createCore(options.container)
         await this.#creatLevel()
         await this.#createPlayer()

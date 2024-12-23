@@ -1,6 +1,3 @@
-import { Modal as BootstrapModal } from 'bootstrap'
-import { createRoot } from 'react-dom/client'
-
 import type AnimatedSpriteActor from './engine/actors/AnimatedSpriteActor.class'
 import type BaseRenderer from './engine/graphics/BaseRenderer.class'
 import type SpeechBubble from './engine/classes/SpeechBubble.class'
@@ -10,18 +7,16 @@ class NPC {
     readonly #name: string
     readonly #actor: AnimatedSpriteActor
     readonly #speechBubble: SpeechBubble
-    readonly #dialogue: string
-    readonly #modalType: string | null
+    readonly #dialogue: string | null
     #isNearby: boolean
     #interactHandler: (name: string) => void
 
-    constructor(name: string, actor: AnimatedSpriteActor, speechBubble: SpeechBubble, dialogue:string, modalType: string) {
+    constructor(name: string, actor: AnimatedSpriteActor, speechBubble: SpeechBubble, dialogue:string | null = null) {
         this.#name = name
         this.#actor = actor
         this.#isNearby = false
         this.#speechBubble = speechBubble
         this.#dialogue = dialogue
-        this.#modalType = modalType
         this.#interactHandler = () => {
             console.log('Interacted with ' + this.#name)
         }
@@ -36,7 +31,7 @@ class NPC {
     }
 
     interact = (): void => {
-        if (this.#isNearby && this.#modalType !== null) {
+        if (this.#isNearby) {
             this.#interactHandler(this.#name)
         }
     }
@@ -51,7 +46,7 @@ class NPC {
     }
 
     drawSpeechBubble = (renderer: BaseRenderer): void => {
-        if (this.#isNearby) {
+        if (this.#isNearby && this.#dialogue) {
             const { xPix } = this.#actor.movable.getMapPixPos()
             const { yPix0 } = this.#actor.getRect()
             this.#speechBubble.drawUp(renderer, this.#dialogue, xPix, yPix0)

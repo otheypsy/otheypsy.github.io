@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { loadJSON } from '../utils/core.utils';
 
 const useFetch = (url: string) => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<object | null>(null);
   
     useEffect(() => {
         const getJSON = async () => {

@@ -68,10 +68,12 @@ class WildWestCommand {
         this.game.level.drawTileMap(this.game.mapRenderer, '-1')
         for (const npc of this.game.npcs) {
             npc.getActor().draw(this.game.mapRenderer)
-            npc.drawSpeechBubble(this.game.baseRenderer)
         }
         this.game.player.draw(this.game.mapRenderer)
         this.game.level.drawTileMap(this.game.mapRenderer, '1')
+        for (const npc of this.game.npcs) {
+            npc.drawSpeechBubble(this.game.baseRenderer)
+        }
         // this.game.level.drawTileMap(this.game.mapRenderer, '0')
         this.game.mapRenderer.restoreContext()
     }

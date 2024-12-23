@@ -1,12 +1,14 @@
 import { Modal as BootstrapModal } from 'bootstrap'
-import { useState, useRef, lazy, useImperativeHandle } from 'react'
-import BusinessExperience from '../features/BusinessExperience.component'
-import Education from '../features/Education.component'
-import TechnicalSkills from '../features/TechnicalSkills.component'
-import Projects from '../features/Projects.component'
+import { useState, useRef, useImperativeHandle } from 'react'
 import PersonalDetails from '../features/PersonalDetails.component'
+import BusinessExperience from '../features/BusinessExperience.component'
+import TechnicalSkills from '../features/TechnicalSkills.component'
+import Education from '../features/Education.component'
+import Projects from '../features/Projects.component'
 
-const sections = {
+type SectionKey = 'personal' | 'business_experience' | 'technical_skills' | 'education' | 'projects';
+
+const sections: Record<SectionKey, { label: string, component: React.ComponentType }> = {
     personal: {
         label: 'Personal',
         component: PersonalDetails
@@ -22,19 +24,29 @@ const sections = {
     education: {
         label: 'Education',
         component: Education
+    },
+    projects: {
+        label: 'Projects',
+        component: Projects
     }
 }
 
-const Modal = ({ref}) => {
+interface ModalHandler {
+    openModal: (section: string) => void
+}
+
+const Modal = ({ref}: {ref: React.RefObject<ModalHandler | null>}) => {
     const modal = useRef(null)
-    const [section, setSection] = useState('personal')
+    const [section, setSection] = useState<SectionKey>('personal')
 
     useImperativeHandle(ref, () => {
         return {
             openModal: (section: string) => {
-                setSection(section)
-                const modalInstance = BootstrapModal.getOrCreateInstance(modal.current)
-                modalInstance.show()
+                setSection(section as SectionKey)
+                if (modal.current) {
+                    const modalInstance = BootstrapModal.getOrCreateInstance(modal.current)
+                    modalInstance.show()
+                }
             }
         };
     }, []);
@@ -62,4 +74,5 @@ const Modal = ({ref}) => {
     )
 }
 
-export default Modal
+export { Modal }
+export type { ModalHandler }

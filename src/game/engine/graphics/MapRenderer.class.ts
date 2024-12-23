@@ -23,23 +23,28 @@ class MapRenderer {
     }
 
     saveContext = (): void => {
+        if (!this.#canvas.context) return
         this.#canvas.context.save()
     }
 
     restoreContext = (): void => {
+        if (!this.#canvas.context) return
         this.#canvas.context.restore()
     }
 
     setScale = (scale: number): void => {
+        if (!this.#canvas.context) return
         this.#canvas.context.scale(scale, scale)
     }
 
     clearCanvas = (): void => {
+        if (!this.#canvas.context) return
         this.#canvas.context.fillStyle = '#6c757d'
         this.#canvas.context.fillRect(0, 0, this.#canvas.element.width, this.#canvas.element.height)
     }
 
     globalTranslate = (): void => {
+        if (!this.#canvas.context) return
         /*
         this.#canvas.element.style.transformOrigin = "0 0";
         this.#canvas.element.style.transform = `scale(${this.#config.scale})`
@@ -73,6 +78,7 @@ class MapRenderer {
         dw: number
         dh: number
     }): void => {
+        if (!this.#canvas.context) return
         this.#canvas.context.beginPath()
         this.#canvas.context.strokeStyle = '#f00' // some color/style
         this.#canvas.context.lineWidth = 1
@@ -80,7 +86,7 @@ class MapRenderer {
     }
 
     drawImage = (data: DrawImage, isDebug: boolean = false): void => {
-
+        if (!this.#canvas.context) return
         this.#canvas.context.drawImage(
             data.img, 
             data.sx, 
