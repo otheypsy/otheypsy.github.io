@@ -9,6 +9,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    environment: development
 
     strategy:
       matrix:
@@ -37,6 +38,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    environment: production
 
     strategy:
       matrix:
@@ -57,7 +59,7 @@ jobs:
         env:
           CI: true
 
-      - name: build code
+      - name: build application bundle
         run: yarn build
         env:
           CI: true
