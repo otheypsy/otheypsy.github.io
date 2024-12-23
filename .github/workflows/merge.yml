@@ -30,8 +30,20 @@ jobs:
         env:
           CI: true
 
-      - name: lint code
-        run: yarn lint
+      - name: lint code using eslint
+        run: yarn lint:eslint
+        env:
+          CI: true
+      
+
+      - name: lint code using tsc
+        run: yarn lint:tsc
+        env:
+          CI: true
+          
+
+      - name: lint code using stylelint
+        run: yarn lint:stylelint
         env:
           CI: true
   
