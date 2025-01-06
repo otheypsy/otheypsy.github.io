@@ -1,6 +1,6 @@
 const loadJSON = async (url: string): Promise<object> => {
-    const response = await fetch(url)
-    return await response.json()
+    const response = await window.fetch(url)
+    return response.json() as Promise<object>
 }
 
 const loadImage = async (url: string): Promise<HTMLImageElement> => {

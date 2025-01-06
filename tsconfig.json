@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         "strict": true,
         "noEmit": true,
         "module": "esnext",
@@ -9,10 +10,20 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noImplicitAny": true,
+        "skipLibCheck": true,
 
         "jsx": "react-jsx",
-        "types": ["vite/client"]
+        "types": ["vite/client"],
+
+        "paths": {
+            "@engine": [ "src/game/engine" ],
+        }
 
     },
-    "include": ["src"]
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }

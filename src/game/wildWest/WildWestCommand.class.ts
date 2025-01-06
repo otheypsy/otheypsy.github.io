@@ -1,8 +1,7 @@
-import { createGameCommand } from '../engine/game/GameCommand.class'
-import Directions from '../engine/abstract/Directions.static'
-import type { GameCommand } from '../engine/game/GameCommand.class'
-import type WildWestGame from './WildWestGame.class'
-import type { Direction } from '../engine/types/Direction.type'
+import { createGameCommand, Directions } from '@engine'
+import type { GameCommand } from '@engine'
+
+import type { WildWestGame } from './WildWestGame.class'
 
 class WildWestCommand {
     command: GameCommand
@@ -10,13 +9,10 @@ class WildWestCommand {
 
     constructor(game: WildWestGame) {
         this.game = game
-        this.command = createGameCommand({
-            fps: game.config.getFPS(),
-            logicIterval: 10
-        })
+        this.command = createGameCommand(game.config.getFPS(), 10)
     }
 
-    readonly #collisionMove = (direction: Direction): void => {
+    readonly #collisionMove = (direction: { label: string; xOffset: number; yOffset: number }): void => {
         const isColliding = this.game.collisionDetector.checkCollision(this.game.level, this.game.player, direction, 1)
         this.game.player.animation.animate(direction.label)
         if (!isColliding) {
@@ -48,7 +44,7 @@ class WildWestCommand {
 
     readonly #npcInteract = (): void => {
         for (const controller of this.game.npcs) {
-            controller?.interact()
+            controller.interact()
         }
     }
 
@@ -63,7 +59,7 @@ class WildWestCommand {
     readonly #drawStep = (): void => {
         this.game.mapRenderer.saveContext()
         this.game.mapRenderer.clearCanvas()
-        // TODO: Fix global translate. Causing visual issues 
+        // TODO: Fix global translate. Causing visual issues
         this.game.mapRenderer.globalTranslate()
         this.game.level.drawTileMap(this.game.mapRenderer, '-1')
         for (const npc of this.game.npcs) {
@@ -109,7 +105,6 @@ class WildWestCommand {
     stop = (): void => {
         this.command.stop()
     }
-
 }
 
 export default WildWestCommand

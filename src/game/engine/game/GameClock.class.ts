@@ -1,8 +1,8 @@
 class GameClock {
-    readonly #interval: number = 0
-    #instance: number = 0
+    readonly #interval: number
+    #instance = 0
 
-    constructor(interval: number = 10) {
+    constructor(interval = 10) {
         this.#interval = interval
     }
 
@@ -12,9 +12,14 @@ class GameClock {
     }
 
     stop = (): void => {
-        window.clearInterval(this.#instance);
+        window.clearInterval(this.#instance)
     }
-
 }
 
-export default GameClock
+const createGameClock = (interval = 10): GameClock => {
+    if (!Number.isInteger(interval)) throw new Error('createGameClock:: interval must be an integer')
+    if (interval <= 9) throw new Error('createGameClock:: interval must be more than 9')
+    return new GameClock(interval)
+}
+
+export { createGameClock, GameClock }

@@ -1,13 +1,13 @@
-import type Level from '../level/Level.class'
-import type { Direction } from '../types/Direction.type'
+import type { Level } from '../world/Level.class'
 import type { RectCoordinates } from '../types/RectCoordinates.type'
 import type { Actor } from '../types/Actor.type'
+import type { Direction } from '../types/Direction.type'
 
 /*
 Selecting Collision Tiles -- OLD
 THIS MIGHT HAVE NON-REQUIRED LOOPS
 return this.#collisionTiles.reduce((aggregate, collision): object[] => {
-    const [y, x] = divMod(collision, this.#tileConfig.xMax)
+    const [y, x] = divMod(collision, this.#worldConfig.xMax)
     if (
         x > actorTilePosition.x - 3 &&
         x < actorTilePosition.x + 4 &&
@@ -17,10 +17,10 @@ return this.#collisionTiles.reduce((aggregate, collision): object[] => {
         return [
             ...aggregate,
             {
-                x0: x * this.#pixelConfig.xPixUnit,
-                y0: y * this.#pixelConfig.yPixUnit,
-                x1: x * this.#pixelConfig.xPixUnit + this.#pixelConfig.xPixUnit,
-                y1: y * this.#pixelConfig.yPixUnit + this.#pixelConfig.xPixUnit,
+                x0: x * this.#modelConfig.xPix,
+                y0: y * this.#modelConfig.yPix,
+                x1: x * this.#modelConfig.xPix + this.#modelConfig.xPix,
+                y1: y * this.#modelConfig.yPix + this.#modelConfig.xPix,
             },
         ]
     }
@@ -46,10 +46,11 @@ class LevelCollisionDetector {
         return true
     }
 
-    checkCollision = (level: Level, actor: Actor, direction: Direction, offset: number = 1): boolean => {
+    checkCollision = (level: Level, actor: Actor, direction: Direction, offset = 1): boolean => {
         const collisions = level.getTileMap('0')
-        if(!collisions) return false
+        if (!collisions) return false
         const currentPix = actor.movable.getMapPixPos()
+        const finalOffset = offset * actor.movable.getMoveSpeed()
         const { x, y } = level.helper.pixToTile(currentPix.xPix, currentPix.yPix)
         for (let i = x - 3; i <= x + 3; i++) {
             for (let j = y - 3; j <= y + 3; j++) {
@@ -58,10 +59,10 @@ class LevelCollisionDetector {
                     if (layer.data[index]?.toString() !== '0') {
                         const actorRect = actor.getRect()
                         const collisionRect = level.helper.getTileRect(i, j)
-                        actorRect.xPix0 += offset * actor.movable.getMoveSpeed() * direction.xOffset
-                        actorRect.xPix1 += offset * actor.movable.getMoveSpeed() * direction.xOffset
-                        actorRect.yPix0 += offset * actor.movable.getMoveSpeed() * direction.yOffset
-                        actorRect.yPix1 += offset * actor.movable.getMoveSpeed() * direction.yOffset
+                        actorRect.xPix0 += finalOffset * direction.xOffset
+                        actorRect.xPix1 += finalOffset * direction.xOffset
+                        actorRect.yPix0 += finalOffset * direction.yOffset
+                        actorRect.yPix1 += finalOffset * direction.yOffset
                         if (this.#checkCollision(actorRect, collisionRect)) {
                             return true
                         }
@@ -73,4 +74,8 @@ class LevelCollisionDetector {
     }
 }
 
-export default LevelCollisionDetector
+const createLevelCollisionDetector = (): LevelCollisionDetector => {
+    return new LevelCollisionDetector()
+}
+
+export { createLevelCollisionDetector, LevelCollisionDetector }

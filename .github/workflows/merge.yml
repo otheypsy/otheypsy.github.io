@@ -46,8 +46,42 @@ jobs:
         run: yarn lint:stylelint
         env:
           CI: true
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    environment: development
+
+    strategy:
+      matrix:
+        node-version: [ 20.x, 18.x ]
+
+    steps:
+      - name: checkout ${{ github.head_ref || github.ref_name }}  branch
+        uses: actions/checkout@v3
+
+
+      - name: use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install node modules
+        run: yarn install
+        env:
+          CI: true
+
+      - name: unit test code using vitest
+        run: yarn test:unit
+        env:
+          CI: true
+
+      - name: coverage test code using vitest
+        run: yarn test:coverage
+        env:
+          CI: true
   
-  build:
+  test:
     name: Build
     runs-on: ubuntu-latest
     environment: production

@@ -1,6 +1,6 @@
 class GameConfig {
-    #scale: number = 1
-    #fps: number = 120
+    #scale = 1
+    #fps = 120
 
     setScale = (scale: number): void => {
         this.#scale = scale
@@ -9,7 +9,6 @@ class GameConfig {
     getScale = (): number => {
         return this.#scale
     }
-
 
     setFPS = (fps: number): void => {
         this.#fps = fps
@@ -20,4 +19,8 @@ class GameConfig {
     }
 }
 
-export default GameConfig
+const createGameConfig = (): GameConfig => {
+    return new GameConfig()
+}
+
+export { createGameConfig, GameConfig }

@@ -33,4 +33,10 @@ class Keyboard {
     }
 }
 
-export default Keyboard
+const createKeyboard = (keys: string[]): Keyboard => {
+    if (!Array.isArray(keys)) throw new Error('createKeyboard:: keys must be an array')
+    if (keys.length === 0) throw new Error('createKeyboard:: keys must not be empty')
+    return new Keyboard(keys)
+}
+
+export { createKeyboard, Keyboard }

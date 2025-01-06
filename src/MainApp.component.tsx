@@ -1,11 +1,11 @@
 import { StrictMode, Suspense } from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createHashRouter } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout/MainLayout.component'
 import Error from './components/Error.component'
 import Loading from './components/Loading.component'
 import routes from './pages/main.routes'
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: '/',
         element: <MainLayout />,

@@ -1,87 +1,59 @@
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
-import react from "eslint-plugin-react";
-import _import from "eslint-plugin-import";
-import jsxA11Y from "eslint-plugin-jsx-a11y";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import prettier from "eslint-plugin-prettier";
-import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import { fixupPluginRules } from '@eslint/compat'
+import globals from 'globals'
+import eslint from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import eslintCommentsPlugin from 'eslint-plugin-eslint-comments'
+import eslintPluginPlugin from 'eslint-plugin-eslint-plugin'
+import importPlugin from 'eslint-plugin-import'
+import jsdocPlugin from 'eslint-plugin-jsdoc'
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
+import reactPlugin from 'eslint-plugin-react'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import prettierRecommended from 'eslint-plugin-prettier/recommended'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
-
-export default [{
-    ignores: [
-        "**/node_modules/",
-        "/build/",
-        "**/.env",
-        "**/.prettierrc",
-        "**/.stylelintrc.json",
-        "**/eslint.config.cjs",
-        "**/vite.config.js",
-        "**/.pnp.*",
-        ".yarn/*",
-    ],
-}, ...fixupConfigRules(compat.extends(
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
-    "plugin:import/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-)), {
-    plugins: {
-        react: fixupPluginRules(react),
-        import: fixupPluginRules(_import),
-        "jsx-a11y": fixupPluginRules(jsxA11Y),
-        "@typescript-eslint": fixupPluginRules(typescriptEslint),
-        prettier,
+export default tseslint.config(
+    {
+        files: ['src/**/*.ts', 'src/**/*.tsx'],
     },
+    {
+        languageOptions: {
+            ecmaVersion: 'latest',
+            sourceType: 'module',
 
-    languageOptions: {
-        globals: {
-            ...globals.browser,
-        },
-
-        parser: tsParser,
-        ecmaVersion: "latest",
-        sourceType: "module",
-
-        parserOptions: {
-            ecmaFeatures: {
-                jsx: true,
+            globals: {
+                ...globals.browser,
+                ...globals.es6,
             },
 
-            project: "./tsconfig.json",
-        },
-    },
-
-    settings: {
-        react: {
-            version: "detect",
-        },
-
-        "import/resolver": {
-            node: {
-                paths: ["src"],
-                extensions: [".js", ".jsx", ".ts", ".tsx"],
+            parser: tseslint.parser,
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname,
+                ecmaFeatures: {
+                    jsx: true,
+                },
             },
         },
-    },
 
-    rules: {
-        "react/prop-types": 0,
+        plugins: {
+            '@typescript-eslint': tseslint.plugin,
+            'eslint-comments': eslintCommentsPlugin,
+            'eslint-plugin': eslintPluginPlugin,
+            import: importPlugin,
+            jsdoc: jsdocPlugin,
+            'jsx-a11y': jsxA11yPlugin.flatConfigs.recommended.plugins['jsx-a11y'],
+            react: reactPlugin,
+            'react-hooks': fixupPluginRules(reactHooksPlugin),
+        },
     },
-}];
+    eslint.configs.recommended,
+    tseslint.configs.strictTypeChecked,
+    tseslint.configs.stylisticTypeChecked,
+    jsdocPlugin.configs['flat/recommended-typescript-error'],
+    prettierRecommended,
+    {
+        rules: {
+            'react/prop-types': 0,
+        },
+    },
+)
