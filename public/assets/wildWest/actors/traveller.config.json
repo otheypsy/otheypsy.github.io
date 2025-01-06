@@ -1,5 +1,4 @@
 {
-
     "tileheight": 40,
     "tilewidth": 40,
     "tilesets": [
@@ -16,5 +15,5 @@
         "x": 19,
         "y": 35
     },
-    "dialogue": "Welcome to town! Speak to others for more information"
+    "dialogue": "Welcome to town! Speak to others for more information\n\nUse `W-A-S-D` to move"
 }

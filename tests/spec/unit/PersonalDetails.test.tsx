@@ -13,49 +13,43 @@ describe('PersonalDetails Component', () => {
         vi.clearAllMocks()
     })
 
-    it('should render the component', () => {
+    it('should render the component', async () => {
         render(<PersonalDetails />)
+        const regex = new RegExp(String.raw`${personalData.name}`)
+        await screen.findByText(regex)
     })
 
-    it('should render the loading component', () => {
+    it('should render the loading component', async () => {
         render(<PersonalDetails />)
-        const loadingElement = screen.getByTestId('loading-element')
-        expect(loadingElement).toBeInTheDocument()
+        const loadingElement = await screen.findByTestId('loading-element')
+        expect(loadingElement.getAttribute('data-testid')).toBe('loading-element')
     })
 
     it('should display the correct name', async () => {
         render(<PersonalDetails />)
-        await waitFor(() => {
-            screen.getByText(personalData.name)
-            const nameElement = screen.getByText(personalData.name)
-            expect(nameElement).toBeInTheDocument()
-        })
+        const regex = new RegExp(String.raw`${personalData.name}`)
+        const nameElement = await screen.findByText(regex)
+        expect(nameElement).toBeInTheDocument()
     })
 
     it('should display the correct work role', async () => {
         render(<PersonalDetails />)
-        await waitFor(() => {
-            const regex = new RegExp(String.raw`${personalData.work.role}`)
-            const roleElement = screen.getByText(regex)
-            expect(roleElement).toBeInTheDocument()
-        })
+        const regex = new RegExp(String.raw`${personalData.work.role}`)
+        const roleElement = await screen.findByText(regex)
+        expect(roleElement).toBeInTheDocument()
     })
 
     it('should display the correct company', async () => {
         render(<PersonalDetails />)
-        await waitFor(() => {
-            const regex = new RegExp(String.raw`${personalData.work.company}`)
-            const companyElement = screen.getByText(regex)
-            expect(companyElement).toBeInTheDocument()
-        })
+        const regex = new RegExp(String.raw`${personalData.work.company}`)
+        const companyElement = await screen.findByText(regex)
+        expect(companyElement).toBeInTheDocument()
     })
 
     it('should display the correct work location', async () => {
         render(<PersonalDetails />)
-        await waitFor(() => {
-            const regex = new RegExp(String.raw`${personalData.location}`)
-            const locationElement = screen.getByText(regex)
-            expect(locationElement).toBeInTheDocument()
-        })
+        const regex = new RegExp(String.raw`${personalData.location}`)
+        const locationElement = await screen.findByText(regex)
+        expect(locationElement).toBeInTheDocument()
     })
 })
