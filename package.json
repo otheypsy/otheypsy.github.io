@@ -22,7 +22,8 @@
         "lint": "yarn run lint:eslint && yarn run lint:tsc && yarn run lint:stylelint",
         "test:unit": "vitest run --config vite.config.mjs",
         "test:coverage": "vitest run --coverage",
-        "build": "vite build"
+        "build": "vite build",
+        "DO_NOT_USE": "python -m http.server"
     },
     "dependencies": {
         "@popperjs/core": "^2.11.8",
