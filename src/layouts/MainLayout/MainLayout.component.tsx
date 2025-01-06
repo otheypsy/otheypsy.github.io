@@ -9,7 +9,7 @@ const MainLayout: React.FC = () => {
     const onHomeRedirect = (): void => {
         navigate('/')
     }
-    const onGameRedirect = (): void =>{
+    const onGameRedirect = (): void => {
         navigate('/game')
     }
 

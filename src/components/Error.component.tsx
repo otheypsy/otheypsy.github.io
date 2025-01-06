@@ -15,7 +15,7 @@ const Error: React.FC = () => {
                 <h1 className="display-4 pb-4">Oops!</h1>
                 <p className="lead">Sorry, an unexpected error has occurred.</p>
                 <p>
-                    <i>{error.statusText ?? error.message}</i>
+                    <i>{error.message}</i>
                 </p>
                 <a className="btn btn-outline-secondary" href="/">
                     Return to Homepage

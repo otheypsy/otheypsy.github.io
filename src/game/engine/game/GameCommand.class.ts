@@ -1,23 +1,28 @@
-import FPSController from "./FPSController.class"
-import GameClock from "./GameClock.class"
+import { createFPSController, type FPSController } from './FPSController.class'
+import { createGameClock, type GameClock } from './GameClock.class'
+
+interface GameCommandConstructor {
+    fps: number
+    logicInterval: number
+}
 
 class GameCommand {
     readonly #fpsController: FPSController
     readonly #gameClock: GameClock
-    #isRunning: boolean = false
+    #isRunning = false
+    #logicStep: () => void
+    #drawStep: () => void
 
-    #logicStep: () => void = () => {
-        throw new Error('Register logic step using `registerLogicStep`')
-    }
-    
-    #drawStep: () => void = () => {
-        throw new Error('Register draw step using `registerDrawStep`')
-    } 
-
-    constructor(fps: number=0, logicIterval: number=10) {
+    constructor(options: GameCommandConstructor) {
         this.#isRunning = false
-        this.#fpsController = new FPSController(fps)
-        this.#gameClock = new GameClock(logicIterval)
+        this.#fpsController = createFPSController(options.fps)
+        this.#gameClock = createGameClock(options.logicInterval)
+        this.#logicStep = () => {
+            throw new Error('Register logic step using `registerLogicStep`')
+        }
+        this.#drawStep = () => {
+            throw new Error('Register draw step using `registerDrawStep`')
+        }
     }
 
     readonly #logicLoop = (): void => {
@@ -29,7 +34,7 @@ class GameCommand {
         if (!this.#isRunning) return undefined
         window.requestAnimationFrame(this.#drawLoop)
 
-        if(!this.#fpsController.check(newTime)) return undefined
+        if (!this.#fpsController.check(newTime)) return undefined
         this.#drawStep()
     }
 
@@ -58,14 +63,12 @@ class GameCommand {
     }
 }
 
-const createGameCommand = (options: {
-    fps: number,
-    logicIterval: number
-}): GameCommand => {
-    return new GameCommand(
-        options.fps,
-        options.logicIterval
-    )
+const createGameCommand = (fps: number, logicInterval: number): GameCommand => {
+    if (!Number.isInteger(fps)) throw new Error('createGameCommand:: fps must be an integer')
+    if (fps < 1) throw new Error('createGameCommand:: fps must be postive')
+    if (!Number.isInteger(logicInterval)) throw new Error('createGameCommand:: interval must be an integer')
+    if (logicInterval <= 9) throw new Error('createGameCommand:: interval must be more than 9')
+    return new GameCommand({ fps, logicInterval })
 }
 
 export { createGameCommand, GameCommand }

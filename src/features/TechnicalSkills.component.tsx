@@ -1,31 +1,22 @@
-import useFetch from '../hooks/useFetchJson.hook'
+import { useFetchJson } from '../hooks/useFetchJson.hook'
 import SkillCategory from '../components/SkillCategory/SkillCategory.component'
+import Loading from '../components/Loading.component'
 
-interface TechSkillsData {
-    name: string
-    type: string
-    skills: string[]
+interface TechSkillsDataResponse {
+    data: {
+        name: string
+        type: string
+        skills: string[]
+    }[]
+    isLoading: boolean
 }
 
 const TechnicalSkills = () => {
-    const techSkillsData = useFetch('/data/techSkills.data.json') as TechSkillsData[]
-    if(!techSkillsData) return null
-    return (
-        <>
-            <h1 className="my-5">
-                <i className="fa-solid fa-wrench fa-xl pe-4"></i>
-                Technical Skills
-            </h1>
-            {techSkillsData.map((category) => (
-                <SkillCategory
-                    key={category.name}
-                    type={category.type}
-                    label={category.name}
-                    skills={category.skills}
-                />
-            ))}
-        </>
-    )
+    const { data, isLoading } = useFetchJson('/data/techSkills.data.json') as TechSkillsDataResponse
+    if (isLoading) return <Loading />
+    return data.map((category) => (
+        <SkillCategory key={category.name} type={category.type} label={category.name} skills={category.skills} />
+    ))
 }
 
 export default TechnicalSkills

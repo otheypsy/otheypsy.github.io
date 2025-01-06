@@ -1,0 +1,22 @@
+.game-modal-dialog {
+    background-image: url('assets/wildWest/modal_background_3.png');
+    background-size: 100% 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.game-modal-content {
+    background: transparent;
+    border: none;
+}
+
+.game-modal-body {
+    scrollbar-width: 10px;
+    scrollbar-color: #283d3b transparent;
+    scrollbar-gutter: stable both-edges;
+}
+
+.game-modal-footer {
+    border: none;
+    justify-content: center;
+}

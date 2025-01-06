@@ -1,10 +1,10 @@
 import { lazy } from 'react'
 
 interface AppRoute {
-    label: string,
-    path: string,
+    label: string
+    path: string
     LazyComponent: React.FC
-    index?: boolean,
+    index?: boolean
 }
 
 const routes: AppRoute[] = [

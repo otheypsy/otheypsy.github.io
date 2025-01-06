@@ -1,43 +1,44 @@
-import useFetch from '../hooks/useFetchJson.hook'
+import { useFetchJson } from '../hooks/useFetchJson.hook'
+import Loading from '../components/Loading.component'
 
-interface PersonalData {
-    name: string
-    work: {
-        role: string
-        company: string
-    };
-    location: string
-    socials: {
+interface PersonalDataResponse {
+    data: {
+        imgUrl: string
         name: string
-        url: string
-        iconCss: string
-    }[];
+        work: {
+            role: string
+            company: string
+        }
+        location: string
+        socials: {
+            name: string
+            url: string
+            iconCss: string
+        }[]
+    }
+    isLoading: boolean
 }
 
 const PersonalDetails = () => {
-    const personalData = useFetch('/data/personal.data.json') as PersonalData
-    if(!personalData) return null
+    const { data, isLoading } = useFetchJson('/data/personal.data.json') as PersonalDataResponse
+    if (isLoading) return <Loading />
     return (
         <>
             <div className="text-center pt-5">
-                <img
-                    alt={personalData.name}
-                    className="img-fluid mx-auto d-block py-5 rounded-circle"
-                    src="/img/profile_1.png"
-                />
-                <h1 className="display-5">{personalData.name}</h1>
+                <img alt={data.name} className="img-fluid mx-auto d-block py-5 rounded-circle" src={data.imgUrl} />
+                <h1 className="display-5">{data.name}</h1>
                 <br />
                 <label className="lead">
-                    {personalData.work.role}
+                    {data.work.role}
                     <br />
-                    {personalData.work.company}
+                    {data.work.company}
                     <br />
-                    {personalData.location}
+                    {data.location}
                 </label>
             </div>
 
             <div className="d-flex justify-content-evenly py-5">
-                {personalData.socials.map((social) => {
+                {data.socials.map((social) => {
                     return (
                         <a
                             key={social.name}

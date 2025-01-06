@@ -1,24 +1,27 @@
-import AggregateTileSet from '../engine/tilesets/AggregateTileSet.class'
+import { createAnimatedSpriteActor, createAggregateTileSet } from '@engine'
+import type { AnimatedSpriteActor, AggregateTileSet } from '@engine'
+
 import TileSetFactory from './TileSet.factory'
-import AnimatedSpriteActor from '../engine/actors/AnimatedSpriteActor.class'
-import MapMovable from '../engine/abstract/MapMovable.class'
-import SpriteAnimation from '../engine/animations/SpriteAnimation.class'
 
 interface TileSetConfigJSON {
-    folderName: string,
-    fileName: string,
-    firstgid: number,
+    folderName: string
+    fileName: string
+    firstgid: number
 }
 
 interface CreateNPC {
     gameName: string
     tilesets: object[]
-    xPixUnit: number
-    yPixUnit: number
+    xPix: number
+    yPix: number
     sprites: Record<string, number[]>
 }
 
-const handleTileSets = async (gameName: string, tileSetAggregate: AggregateTileSet, tileSets: TileSetConfigJSON[]): Promise<void> => {
+const handleTileSets = async (
+    gameName: string,
+    tileSetAggregate: AggregateTileSet,
+    tileSets: TileSetConfigJSON[],
+): Promise<void> => {
     for (const tileSet of tileSets) {
         const tileSetObj = await TileSetFactory.create({
             gameName,
@@ -31,23 +34,15 @@ const handleTileSets = async (gameName: string, tileSetAggregate: AggregateTileS
 }
 
 const create = async (npc: CreateNPC): Promise<AnimatedSpriteActor> => {
-    
-    const pixelConfig = {
-        xPixUnit: npc.xPixUnit,
-        yPixUnit: npc.yPixUnit,
+    const modelConfig = {
+        xPix: npc.xPix,
+        yPix: npc.yPix,
     }
 
-    const tileSetAggregate = new AggregateTileSet()
-    await handleTileSets(npc.gameName, tileSetAggregate, (npc.tilesets as TileSetConfigJSON[]))
-    const animation = new SpriteAnimation(npc.sprites)
-    const movable = new MapMovable()
+    const tileSetAggregate = createAggregateTileSet()
+    await handleTileSets(npc.gameName, tileSetAggregate, npc.tilesets as TileSetConfigJSON[])
 
-    return new AnimatedSpriteActor({
-        tileSet: tileSetAggregate,
-        pixelConfig,
-        animation,
-        movable
-    })
+    return createAnimatedSpriteActor(modelConfig, npc.sprites, tileSetAggregate)
 }
 
 export default { create }

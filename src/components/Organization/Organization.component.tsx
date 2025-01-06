@@ -3,13 +3,13 @@ import classNames from './Organization.module.scss'
 const logoClassNames = classNames.logo + ' img-fluid me-3'
 
 interface OrganizationProps {
-    imgUrl?: string;
-    name: string;
+    imgUrl?: string
+    name: string
     roles: {
-        title: string;
-        start: string;
-        end: string;
-    }[];
+        title: string
+        start: string
+        end: string
+    }[]
 }
 
 const Organization = (props: OrganizationProps) => {

@@ -1,7 +1,4 @@
-import type AnimatedSpriteActor from './engine/actors/AnimatedSpriteActor.class'
-import type BaseRenderer from './engine/graphics/BaseRenderer.class'
-import type SpeechBubble from './engine/classes/SpeechBubble.class'
-import type { PixelPosition } from './engine/types/PixelPosition'
+import type { AnimatedSpriteActor, BaseRenderer, SpeechBubble } from '@engine'
 
 class NPC {
     readonly #name: string
@@ -11,7 +8,7 @@ class NPC {
     #isNearby: boolean
     #interactHandler: (name: string) => void
 
-    constructor(name: string, actor: AnimatedSpriteActor, speechBubble: SpeechBubble, dialogue:string | null = null) {
+    constructor(name: string, actor: AnimatedSpriteActor, speechBubble: SpeechBubble, dialogue: string | null = null) {
         this.#name = name
         this.#actor = actor
         this.#isNearby = false
@@ -36,7 +33,7 @@ class NPC {
         }
     }
 
-    updateIsNearby = (reference: PixelPosition, threshold: number = 50): void => {
+    updateIsNearby = (reference: { xPix: number; yPix: number }, threshold = 50): void => {
         const { xPix, yPix } = this.#actor.movable.getMapPixPos()
         this.#isNearby =
             xPix > reference.xPix - threshold &&

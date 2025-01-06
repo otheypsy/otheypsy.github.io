@@ -1,6 +1,6 @@
 const Loading: React.FC = () => {
     return (
-        <div className="d-flex justify-content-center m-5">
+        <div className="d-flex justify-content-center m-5" data-testid="loading-element">
             <div className="spinner-grow text-primary mx-2" role="status" />
             <div className="spinner-grow text-light mx-2" role="status" />
             <div className="spinner-grow text-success mx-2" role="status" />

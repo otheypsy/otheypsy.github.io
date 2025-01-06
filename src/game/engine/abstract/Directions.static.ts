@@ -31,4 +31,4 @@ const Directions = Object.freeze({
     RIGHT: right,
 })
 
-export default Directions
+export { Directions }

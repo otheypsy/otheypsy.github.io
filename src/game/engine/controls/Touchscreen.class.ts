@@ -1,11 +1,7 @@
-import Directions from '../abstract/Directions.static'
+import { Directions } from '../abstract/Directions.static'
 
 class Touchscreen {
-    readonly #touches: {
-        [key: string]: {
-            active: boolean
-        },
-    }
+    readonly #touches: Record<string, { active: boolean }>
 
     constructor(element: HTMLCanvasElement) {
         this.#touches = {}
@@ -17,7 +13,7 @@ class Touchscreen {
 
     readonly #initDirections = (): void => {
         for (const direction in Directions) {
-            const key = direction as keyof typeof Directions;
+            const key = direction as keyof typeof Directions
             this.#touches[Directions[key].label] = {
                 active: false,
             }
@@ -68,13 +64,15 @@ class Touchscreen {
         })
     }
 
-    getTouches = (): {
-        [key: string]: {
-            active: boolean
-        },
-    } => {
+    getTouches = (): Record<string, { active: boolean }> => {
         return this.#touches
     }
 }
 
-export default Touchscreen
+const createTouchscreen = (canvas: HTMLCanvasElement): Touchscreen => {
+    if (!(canvas instanceof HTMLCanvasElement))
+        throw new Error('createTouchscreen:: canvas must be an instance of HTMLCanvasElement')
+    return new Touchscreen(canvas)
+}
+
+export { createTouchscreen, Touchscreen }

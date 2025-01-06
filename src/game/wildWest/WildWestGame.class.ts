@@ -1,48 +1,60 @@
-import GameConfig from '../engine/game/GameConfig.class'
-import GameCanvas from '../engine/graphics/GameCanvas.class'
-import MapRenderer from '../engine/graphics/MapRenderer.class'
-import Controls from '../engine/controls/Controls.class'
-import LevelCollisionDetector from '../engine/collisions/LevelCollisionDetector.class'
+import {
+    createGameConfig,
+    createGameCanvas,
+    createCamera,
+    createControls,
+    createKeyboard,
+    createTouchscreen,
+    createMapRenderer,
+    createBaseRenderer,
+    createLevelCollisionDetector,
+    createSpeechBubble,
+} from '@engine'
+
+import type {
+    GameConfig,
+    GameCanvas,
+    GameCamera,
+    Controls,
+    MapRenderer,
+    AnimatedSpriteActor,
+    BaseRenderer,
+    Level,
+    LevelCollisionDetector,
+} from '@engine'
+
 import AnimatedSpriteActorFactory from '../factories/AnimatedSpriteActor.factory'
-import Keyboard from '../engine/controls/Keyboard.class'
 import LevelFactory from '../factories/Level.factory'
-import type AnimatedSpriteActor from '../engine/actors/AnimatedSpriteActor.class'
-import Touchscreen from '../engine/controls/Touchscreen.class'
-import Camera from '../engine/graphics/Camera.class'
-import BaseRenderer from '../engine/graphics/BaseRenderer.class'
-import SpeechBubble from '../engine/classes/SpeechBubble.class'
 import NPC from '../NPC.class'
 import { loadJSON } from '../../utils/core.utils'
 
-import type Level from '../engine/level/Level.class'
-
 interface ActorConfigJSON {
-    tilesets: object[],
-    tilewidth: number,
-    tileheight: number,
-    sprites: Record<string, number[]>,
+    tilesets: object[]
+    tilewidth: number
+    tileheight: number
+    sprites: Record<string, number[]>
     start: {
-        x: number,
+        x: number
         y: number
-    },
+    }
     dialogue?: string
 }
 
 interface LevelConfigJSON {
-    xMax: number,
-    yMax: number,
-    width: number,
-    height: number,
-    tilewidth: number,
-    tileheight: number,
-    tilesets: object[],
-    layers: object[],
+    xMax: number
+    yMax: number
+    width: number
+    height: number
+    tilewidth: number
+    tileheight: number
+    tilesets: object[]
+    layers: object[]
 }
 
 class WildWestGame {
     config!: GameConfig
-    camera!: Camera
     canvas!: GameCanvas
+    camera!: GameCamera
     level!: Level
     controls!: Controls
     baseRenderer!: BaseRenderer
@@ -52,45 +64,44 @@ class WildWestGame {
     npcs!: NPC[]
 
     readonly #createCore = (container: HTMLElement): void => {
-        this.config = new GameConfig()
         container.innerHTML = ''
-        this.canvas = new GameCanvas(container, this.config.getScale())
-        this.camera = new Camera()
-        const touchscreen = new Touchscreen(this.canvas.element)
-        const keyboard = new Keyboard(['w', 'a', 's', 'd', 'e'])
-        this.controls = new Controls(keyboard, touchscreen)
-        this.mapRenderer = new MapRenderer({
-            config: this.config,
-            canvas: this.canvas,
-            camera: this.camera,
-        })
-        this.baseRenderer = new BaseRenderer({
-            config: this.config,
-            canvas: this.canvas,
-        })
+        this.config = createGameConfig()
+        this.canvas = createGameCanvas(container)
+        this.camera = createCamera()
+    }
+
+    readonly #createRenderers = (): void => {
+        this.mapRenderer = createMapRenderer(this.config, this.canvas, this.camera)
+        this.baseRenderer = createBaseRenderer(this.canvas)
+    }
+
+    readonly #createControls = (): void => {
+        const keyboard = createKeyboard(['w', 'a', 's', 'd', 'e'])
+        const touchscreen = createTouchscreen(this.canvas.element)
+        this.controls = createControls(keyboard, touchscreen)
     }
 
     readonly #creatLevel = async (): Promise<void> => {
-        const levelTileMap = await loadJSON('/assets/wildWest/tilemaps/main/main.tilemap.json') as LevelConfigJSON
+        const levelTileMap = (await loadJSON('/assets/wildWest/tilemaps/main/main.tilemap.json')) as LevelConfigJSON
         this.level = await LevelFactory.create({
             gameName: 'wildWest',
             xMax: levelTileMap.width,
             yMax: levelTileMap.height,
-            xPixUnit: levelTileMap.tilewidth,
-            yPixUnit: levelTileMap.tileheight,
+            tileWidth: levelTileMap.tilewidth,
+            tileHeight: levelTileMap.tileheight,
             tilesets: levelTileMap.tilesets,
             layers: levelTileMap.layers,
         })
-        this.collisionDetector = new LevelCollisionDetector()
+        this.collisionDetector = createLevelCollisionDetector()
     }
 
     readonly #createPlayer = async (): Promise<void> => {
-        const playerConfig = await loadJSON('/assets/wildWest/actors/player.config.json') as ActorConfigJSON
+        const playerConfig = (await loadJSON('/assets/wildWest/actors/player.config.json')) as ActorConfigJSON
         this.player = await AnimatedSpriteActorFactory.create({
             gameName: 'wildWest',
             tilesets: playerConfig.tilesets,
-            xPixUnit: playerConfig.tilewidth,
-            yPixUnit: playerConfig.tileheight,
+            xPix: playerConfig.tilewidth,
+            yPix: playerConfig.tileheight,
             sprites: playerConfig.sprites,
         })
         const playerStartPos = this.level.helper.tileToPix(playerConfig.start.x, playerConfig.start.y)
@@ -101,19 +112,19 @@ class WildWestGame {
     readonly #createNPCs = async (
         interactHandler = (name: string) => {
             console.log('WildWestGame::#createNPCs::interactHandler', name)
-        }
+        },
     ): Promise<void> => {
         this.npcs = []
-        const speechBubble = new SpeechBubble(this.config)
+        const speechBubble = createSpeechBubble(this.config)
         const requiredNPCs = ['traveller', 'worker', 'bartender', 'sheriff']
 
         for (const npc of requiredNPCs) {
-            const config = await loadJSON('/assets/wildWest/actors/' + npc + '.config.json') as ActorConfigJSON
+            const config = (await loadJSON('/assets/wildWest/actors/' + npc + '.config.json')) as ActorConfigJSON
             const actor = await AnimatedSpriteActorFactory.create({
                 gameName: 'wildWest',
                 tilesets: config.tilesets,
-                xPixUnit: config.tilewidth,
-                yPixUnit: config.tileheight,
+                xPix: config.tilewidth,
+                yPix: config.tileheight,
                 sprites: config.sprites,
             })
             const startPixPos = this.level.helper.tileToPix(config.start.x, config.start.y)
@@ -136,11 +147,12 @@ class WildWestGame {
     }
 
     initialize = async (options: {
-        container: HTMLElement | null
+        container: HTMLElement
         interactHandler: (name: string) => void
     }): Promise<void> => {
-        if (!options.container) return
         this.#createCore(options.container)
+        this.#createRenderers()
+        this.#createControls()
         await this.#creatLevel()
         await this.#createPlayer()
         await this.#createNPCs(options.interactHandler)
@@ -148,4 +160,19 @@ class WildWestGame {
     }
 }
 
-export default WildWestGame
+const createWildWestGame = async (
+    container?: HTMLElement,
+    interactHandler?: (name: string) => void,
+): Promise<WildWestGame> => {
+    if (!container) throw new Error('createWildWestGame::container is null')
+    if (!interactHandler) throw new Error('createWildWestGame::interactHandler is null')
+
+    const game = new WildWestGame()
+    await game.initialize({
+        container,
+        interactHandler,
+    })
+    return game
+}
+
+export { WildWestGame, createWildWestGame }

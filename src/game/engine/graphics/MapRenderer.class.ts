@@ -1,20 +1,19 @@
-import type GameCanvas from './GameCanvas.class'
-import type GameConfig from '../game/GameConfig.class'
+import { GameCanvas } from './GameCanvas.class'
+import { GameConfig } from '../game/GameConfig.class'
+import { GameCamera } from './GameCamera.class'
 import type { DrawImage } from '../types/DrawImage.type'
-
-import type Camera from './Camera.class'
 import type { RectCoordinates } from '../types/RectCoordinates.type'
 
 interface MapRendererConstructor {
     config: GameConfig
     canvas: GameCanvas
-    camera: Camera
+    camera: GameCamera
 }
 
 class MapRenderer {
     readonly #config: GameConfig
     readonly #canvas: GameCanvas
-    readonly #camera: Camera
+    readonly #camera: GameCamera
 
     constructor(data: MapRendererConstructor) {
         this.#config = data.config
@@ -52,10 +51,7 @@ class MapRenderer {
         this.#canvas.context.translate(this.#canvas.center.xPix, this.#canvas.center.yPix)
         this.setScale(this.#config.getScale())
 
-        this.#canvas.context.translate(
-            -this.#camera.getMapOffset().xPix,
-            -this.#camera.getMapOffset().yPix,
-        )
+        this.#canvas.context.translate(-this.#camera.getMapOffset().xPix, -this.#camera.getMapOffset().yPix)
     }
 
     getCurrentViewport = (): RectCoordinates => {
@@ -72,12 +68,7 @@ class MapRenderer {
         }
     }
 
-    drawDebugGrid = (data: {
-        dx: number
-        dy: number
-        dw: number
-        dh: number
-    }): void => {
+    drawDebugGrid = (data: { dx: number; dy: number; dw: number; dh: number }): void => {
         if (!this.#canvas.context) return
         this.#canvas.context.beginPath()
         this.#canvas.context.strokeStyle = '#f00' // some color/style
@@ -85,21 +76,18 @@ class MapRenderer {
         this.#canvas.context.strokeRect(data.dx, data.dy, data.dw, data.dh)
     }
 
-    drawImage = (data: DrawImage, isDebug: boolean = false): void => {
+    drawImage = (data: DrawImage, isDebug = false): void => {
         if (!this.#canvas.context) return
-        this.#canvas.context.drawImage(
-            data.img, 
-            data.sx, 
-            data.sy,
-            data.sw,
-            data.sh,
-            data.dx,
-            data.dy,
-            data.dw,
-            data.dh
-        )
+        this.#canvas.context.drawImage(data.img, data.sx, data.sy, data.sw, data.sh, data.dx, data.dy, data.dw, data.dh)
         if (isDebug) this.drawDebugGrid(data)
     }
 }
 
-export default MapRenderer
+const createMapRenderer = (config: GameConfig, canvas: GameCanvas, camera: GameCamera): MapRenderer => {
+    if (!(config instanceof GameConfig)) throw new Error('createMapRenderer:: config must be an instance of GameConfig')
+    if (!(canvas instanceof GameCanvas)) throw new Error('createMapRenderer:: canvas must be an instance of GameCanvas')
+    if (!(camera instanceof GameCamera)) throw new Error('createMapRenderer:: camera must be an instance of Camera')
+    return new MapRenderer({ config, canvas, camera })
+}
+
+export { createMapRenderer, MapRenderer }

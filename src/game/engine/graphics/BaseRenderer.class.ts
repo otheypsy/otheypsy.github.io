@@ -1,16 +1,10 @@
-import type GameCanvas from './GameCanvas.class'
-import type GameConfig from '../game/GameConfig.class'
-
-interface BaseRendererConstructor {
-    config: GameConfig
-    canvas: GameCanvas
-}
+import { GameCanvas } from './GameCanvas.class'
 
 class BaseRenderer {
     readonly #canvas: GameCanvas
 
-    constructor(data: BaseRendererConstructor) {
-        this.#canvas = data.canvas
+    constructor(canvas: GameCanvas) {
+        this.#canvas = canvas
     }
 
     saveContext = (): void => {
@@ -30,13 +24,16 @@ class BaseRenderer {
 
     configureStyle = (data: object): void => {
         if (!this.#canvas.context) return
-        for(const key of Object.keys(data)) {
+        for (const key of Object.keys(data)) {
             // @ts-expect-error using index signature
-            this.#canvas.context[key] = data[key]
+            this.#canvas.context[key] = data[key] as string
         }
     }
 
-    getWrappedText = (text: string, maxWidth: number): { wrappedText: string[]; width: number; height: number } | null => {
+    getWrappedText = (
+        text: string,
+        maxWidth: number,
+    ): { wrappedText: string[]; width: number; height: number } | null => {
         if (!this.#canvas.context) return null
         let height = 0
         const wrappedText = []
@@ -74,11 +71,16 @@ class BaseRenderer {
         this.#canvas.context.fillText(text, xPix, yPix)
     }
 
-    drawPath = (path: Path2D, fill: boolean = true): void => {
+    drawPath = (path: Path2D, fill = true): void => {
         if (!this.#canvas.context) return
         if (fill) this.#canvas.context.fill(path)
         this.#canvas.context.stroke(path)
     }
 }
 
-export default BaseRenderer
+const createBaseRenderer = (canvas: GameCanvas): BaseRenderer => {
+    if (!(canvas instanceof GameCanvas))
+        throw new Error('createBaseRenderer:: canvas must be an instance of GameCanvas')
+    return new BaseRenderer(canvas)
+}
+export { createBaseRenderer, BaseRenderer }

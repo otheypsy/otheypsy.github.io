@@ -1,8 +1,6 @@
-import BasicTileSet from '../engine/tilesets/BasicTileSet.class'
+import { createBasicTileSet } from '@engine'
+import type { BasicTileSet } from '@engine'
 import { loadImage, loadJSON } from '../../utils/core.utils'
-
-import type { PixelConfig } from '../engine/types/PixelConfig.type'
-import type { TileConfig } from '../engine/types/TileConfig.type'
 
 interface CreateTileSet {
     gameName: string
@@ -12,34 +10,33 @@ interface CreateTileSet {
 }
 
 interface TileSetConfigJSON {
-    columns: number,
-    tilecount: number,
-    startId: number,
-    tilewidth: number,
-    tileheight: number,
+    columns: number
+    tilecount: number
+    startId: number
+    tilewidth: number
+    tileheight: number
 }
 
 const create = async (tileSet: CreateTileSet): Promise<BasicTileSet> => {
-    const relativeImgPath = '/assets/' + tileSet.gameName + '/tilesets/' + tileSet.folderName + '/' + tileSet.fileName + '.tileset.png'
+    const relativeImgPath =
+        '/assets/' + tileSet.gameName + '/tilesets/' + tileSet.folderName + '/' + tileSet.fileName + '.tileset.png'
     const imgUrl = new URL(relativeImgPath, import.meta.url).href
     const image = await loadImage(imgUrl)
-    const config = await loadJSON('/assets/' + tileSet.gameName + '/tilesets/' + tileSet.folderName + '/' + tileSet.fileName + '.tileset.json') as TileSetConfigJSON
+    const config = (await loadJSON(
+        '/assets/' + tileSet.gameName + '/tilesets/' + tileSet.folderName + '/' + tileSet.fileName + '.tileset.json',
+    )) as TileSetConfigJSON
 
-    const tileConfig: TileConfig = {
+    const gridConfig = {
         xMax: config.columns,
         count: config.tilecount,
         startId: tileSet.startId,
     }
 
-    const pixelConfig: PixelConfig = {
-        xPixUnit: config.tilewidth,
-        yPixUnit: config.tileheight,
+    const modelConfig = {
+        xPix: config.tilewidth,
+        yPix: config.tileheight,
     }
 
-    return new BasicTileSet({
-        image,
-        tileConfig,
-        pixelConfig,
-    })
+    return createBasicTileSet(image, gridConfig, modelConfig)
 }
 export default { create }
